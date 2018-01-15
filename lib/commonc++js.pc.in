@@ -1,0 +1,14 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: commonc++js
+Description: Common C++ JavaScript Class Library
+Version: @VERSION@
+URL: http://www.hyperrealm.com/main.php?s=commoncpp
+Requires:
+Conflicts:
+Libs: -L${libdir} -lcommonc++js
+Libs.private: -lcommonc++ -ljs @LIBS@ 
+Cflags: -I${includedir}

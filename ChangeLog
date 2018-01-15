@@ -1,0 +1,2305 @@
+
+	----- version 0.7 ------
+
+2014-08-10  Mark Lindner  <markl@neuromancer>
+
+	* <multiple> - Remove all throw() specifications, code formatting
+	  fixes; replace UString with String.
+	* UTF8Decoder.c++, UTF8Decoder.h++ - implement stopDecodingAtNullChar
+	* SQLDatabase.c++ - replace UString with String, bugfixes.
+	* AsyncIOTask.c++, AsyncIOTask.h++, AsyncIOPoller.c++, AsyncIOPoller.h++ -
+	  portability fixes (check for presence of AIO)
+	* PulseTimer.c++, PulseTimer.h++ - change c'tor args from uint_t to
+	  timespan_s_t.
+	* MD5Password.c++, MD5Digest.c++, MD5Digest.h++ - bugfixes and code
+	  cleanup
+	* CircularBuffer.h++, CircularBufferImpl.h++ - use uint_t for sizes and
+	  item counts; added markReadPos(), markWritePos(), rewindReadPos(),
+	  rewindWritePos(), setReadPosFromMark(), setWritePosFromMark()
+	* StaticObjectPool.h++, StaticObjectPoolImpl.h++, ObjectPool.h++,
+	  DynamicArray.h++, AbstractBuffer.h++, AbstractBufferImpl.h++,
+	  Buffer.h++, BufferImpl.h++, Blob.c++, Blob.h++, Array.h++,
+	  ArrayImpl.h++ - use uint_t for size
+	* BTree.h++, BTreeImpl.h++ - use uint_t for capacity
+	* PulsweTimer.h++ - use timespan_s_t for time intervals
+	* Locale.c++, Locale.h++ - wrap in #ifndef CCXX_OS_ANDROID
+	* JavaException.c++, JavaException.h++ - add JavaClassLoaderException.
+	* Common.h++ - removed WNUL
+	* JavaVirtualMachine.c++, JavaVirtualMachine.h++ - added a c'tor that
+	  takes a JavaVM*.
+	* Buffer.h++, BufferImpl.h++ - added takeOwnership parameter to c'tor.
+	* File.c++, File.h++ - added readToString()
+	* NetworkInterface.c++, NetworkInterface.h++ - removed non-portable code
+	* DataReader.c++, DataReader.h++ - added readString()
+	* DataEncoder.c++, DataEncoder.h++ - added ScopedContext
+	* StopWatch.c++, StopWatch.h++ - renamed from Timer.c++, Timer.h++
+	* ConditionVar.c++, ConditionVar.h++ - renamed from CondVar.c++,
+	  CondVar.h++
+	* SocketSelector.c++, SocketSelector.h++ - renamed from
+	  SocketMuxer.c++, SocketMuxer.h++
+	* AbstractCache.h++, AbstractCacheImpl.h++,
+	  CircularByteBufferDataReader.c++, CircularByteBufferDataReader.h++,
+	  CircularByteBufferDataWriter.c++, CircularByteBufferDataWriter.h++,
+	  DynamicCache.h++, DynamicCacheImpl.h++, Flags.h++, FlagsImpl.h++,
+	  StaticCache.h++, StaticCacheImpl.h++, String.c++, String.h++
+	  - new classes
+	* Random.c++ - portability fixes for Android
+	* DirectoryWatcher.c++, Semaphore.c++, MemoryMappedFile.c++,
+	  LoadableModule.c++, FilePtr.c++, SHaredMemoryBlock.c++, Dir.c++,
+	  ServerStreamPipe.c++, Console.c++, TempFile.c++, StreamPipe.c++
+	  - properly handle unicode filenames on Windows
+	* SQLQuery.c++ - bugfixes; unicode support
+	* DateTimeFormat.c++ - wrap _format() in #ifndef CCXX_OS_ANDROID
+	* Network.c++ - reimplement getInterfaces() for Windows to retrieve
+	  missing information
+	* XMLElementIterator.c++ - implement remove() and fix iteration
+
+2014-03-28  Mark Lindner  <markl@neuromancer>
+
+	* AsyncIOPoller.c++, AsyncIOPoller.h++, AsyncIOTask.c++,
+	  AsyncIOTask.h++, DateTimeFormat.c++, JavaVirtualMachine.c++,
+	  Locale.c++, Locale.h++, Mutex.c++, POSIX.h++, Random.c++,
+	  SerialPort.c++, ServerStreamPipe.c++, SharedMemoryBlock.c++,
+	  Stream.c++, StreamPipe.c++ - Android portability fixes
+	* CircularByteBufferDataReader.c++, CircularByteBufferDataReader.h++,
+	  CircularByteBufferDataWriter.c++, CircularByteBufferDataWriter.h++ -
+	  new classes (partially implemented)
+	* Console.c++ - UTF8 fixes in setTitle()
+	* JavaContext.c++ - code cleanup; added defineClass() method
+	* Common.h++ - fixed typo in CCXX_OFFSETOF macro
+	* DataEncoder.h++ - documentation fix; added ScopedContext
+	* aux_build/* - updated to latest versions
+	* Timer.c++, Timer.h++ - renamed to StopWatch
+	* JavaException.c++, JavaException.h++ - added JavaClassLoaderException
+	* JavaVirtualMachine.c++, JavaVirtualMachine.h++ - Added new
+	  constructor
+	* Char.c++, Char.h++ - added toASCII() method
+	* DataReader.c++, DataReader.h++ - added readBytes() and readFully()
+	* AbstractBuffer.h++, AbstractBufferImpl.h++ - added new constructor
+	  to wrap an existing byte array
+	* Buffer.h++, BufferImpl.h++ - added new constructor for wrapping
+	  an existing byte array
+	* CircularBuffer.h++, CircularBufferImpl.h++ - added markWritePos(),
+	  rewindWritePos(), setReadPosFromMark(), setWritePosFromMark()
+	* RegExp.c++, RegExp.h++ - rewritten to support UTF-16 strings.
+
+2014-01-22  Mark Lindner  <markl@neuromancer>
+
+	* LoadableModule.c++, LoadableModule.h++ - add support for opening the
+	  calling process
+	* BitSet.c++, Blob.c++, ByteBufferDataWriter.c++, Char.c++,
+	  CharOps.c++, DataEncoder.c++, DataReader.c++, DirectoryWatcher.c++,
+	  MD5Digest.c++, Network.c++, PulseTimer.c++, SQLQuery.c++,
+	  StreamPipe.c++, String.c++, System.c++, Thread.c++, Variant.c++,
+	  AbstractBuffer.h++, AbstractBufferImpl.h++, Array.h++, BTree.h++,
+	  BTreeImpl.h++, BasicBufferedStreamImpl.h++, BitSet.h++, Blob.h++,
+	  Buffer.h++, BufferImpl.h++, ByteBufferDataWriter.h++, CharOps.h++,
+	  CircularBuffer.h++, CircularBufferImpl.h++, DataReader.h++,
+	  DynamicArray.h++, DynamicObjectPool.h++, DynamicObjectPoolImpl.h++,
+	  Integers.h++, JavaContext.h++, Network.h++, RefSetImpl.h++,
+	  String.h++, Variant.h++ - fixed compiler warnings, build errors,
+	  64-bit portability problems, typos, etc.
+	* MD5Password.c++ - bugfixes
+	* CString.c++, CString.h++ - added operator[]() and bytes()
+	* CircularByteBufferDataReader.c++, CircularByteBufferDataReader.h++,
+	  CircularByteBufferDataWriter.c++, CircularByteBufferDataWriter.h++ -
+	  new classes
+	* SocketSelector.c++, SocketSelector.h++ - added beginWrite(),
+	  endWrite(), cancelWrite(), readUInt32(), readUInt64(),
+	  getBytesAvailableToRead(), getBytesAvailableToWrite()
+	* prce-8.12/*, pcre-8.34/* - upgraded PCRE to latest version
+	* sqlite-3.7.5/*, sqlite-3.8.2/* - upgraded SQLite to latest version
+
+2013-12-02  Mark Lindner  <markl@neuromancer>
+	* <multiple> - migration to a single 16-bit String class
+	* <multiple> - code cleanup and class renaming
+
+2013-11-21  Mark Lindner  <markl@neuromancer>
+
+	* BTreeImpl.h++ - fixed whitespace
+	* Common.h++ - check for WIN64
+	* pcre-8.12/configure.gnu, sqlite-3.7.5/configure.gnu,
+	  libiconv-1.13.1/configure.gnu, lib/Makefile.am,
+	  plugintool/Makefile.am, tests/Makefile.am - fixes for out-of-source
+	  builds
+	* aclocal.m4, aux-build/ltmain.sh, m4/libtool.m4, m4/ltversion.m4 -
+	  updated to newer build tools
+
+	----- version 0.6.6 ------
+
+2011-11-26  Mark Lindner  <markl@neuromancer>
+
+	* SerialPort.c++, SerialPort.h++ - renamed 'StopBits15' enum
+	  constant to 'StopBits1_5'
+
+2011-11-12  Mark Lindner  <markl@neuromancer>
+
+	* Log.h++ - doc updates
+	* JavaContext.c++, JavaContext.h++, JavaVirtualMachine.c++,
+	  JavaVirtualMachine.h++, JavaBUffer.c++ - simplified API: combined
+	  attachThread() with getContext(); use native types instead of JNI
+	  types in method signatures
+	* SerialPort.h++ - made _device member private, and added a getDevice()
+	  accessor
+	* DataEncoder.h++, Mutex.h++, Date.h++, Socket.h++, FileLogger.h++,
+	  Application.h++, Log.h++, BasicBufferedStream.h++, JavaBuffer.h++,
+	  Stream.h++, Time.h++, SQLPrivate.h++ - doc updates: marked internal
+	  entities as such, so they don't appear in the documentation
+
+2011-09-12  Mark Lindner  <markl@neuromancer>
+
+	* SQLValueBinder.c++, SQLValueBinder.h++ - added inserters/extractors
+	  for bool types
+	* Makefile.am - added missing files (Cache.h++, CacheImpl.h++)
+	* README - updated
+	* config.opts, config.osx.opts - updated
+
+2011-08-10  Mark Lindner  <markl@neuromancer>
+
+	* Random.c++ - portability fix for MinGW
+	* CPUStats.c++ - #ifdef out PDH calls for MinGW
+	* CStringLessThanFunctor.h++ - added doc comments
+	* Thread.c++, Thread.h++ - use timespan_ms_t for timespan arguments
+	* WCharTraits.c++ - portability fix for MinGW
+	* JavaContext.c++ - bugfixes in string transcoding functions
+	* cbits/Makefile.am, libatomic/Makefile.am, libstacktrace/Makefile.am
+	  - converted into libtool convenience libraries
+	* DateTimeFormat.c++ - on Windows, #define _USE_32BIT_TIME_T and
+	  use localtime() and time_t (fixes MinGW portability issues)
+	* CString.c++, CString.h++ - added new class
+	* CharOps.c++, CharOps.h++, CharRef.c++, CharRef.h++, UChar.c++,
+	  UChar.h++, UString.c++, UString.h++, UTF8Encoder.c++,
+	  UTF8Encoder.h++, UTF8Decoder.c++, UTF8Decoder.h++ - new string
+	  classes
+	* Common.h++ - bump verison, add char16_t
+	* SQLQuery.c++, SQLQuery.h++, SQLPrivate.h++, SQLValueBinder.c++,
+	  SQLValueBinder.h++, SQLDatabase.c++ , SQLDatabase.h++ - new SQL API
+	* configure.ac - bump version; fix linker args for MinGW
+	* RegExp.c++ - #define PCRE_STATIC for MinGW
+
+2011-04-22  Mark Lindner  <markl@neuromancer>
+
+	* ByteOrder.h++, Common.h++, DLLMain.c++, Network.c++, Private.h++,
+	  Socket.h++, SocketMuxer.c++ - Windows bugfix: clean up #includes of
+	  <winsock2.h>, and move FD_SETSIZE redefinition
+	* Process.c++ - Windows bugfix: mark unneeded pipe handles as
+	  not inheritable
+	* CondVar.h++ - fwd decl Mutex
+	* Cache.h++, CacheImpl.h++ - new class
+	* Log.h++ - added printf attribute (gcc only)
+	* ReadWriteLock.h++, ThreadLocal.h++ - disable copy/assignment
+	* JavaContext.c++ - bugfix in parseSignature()
+
+2011-04-06  Mark Lindner  <markl@neuromancer>
+
+	* Exception.h++ - subclass std::exception
+
+	----- version 0.6.5 ------
+
+2011-03-05  Mark Lindner  <markl@neuromancer>
+
+	* AsyncIOPoller.c++, AsyncIOPoller.h++, AsyncIOTask.c++,
+	  AsyncIOTask.h++, BoundedQueue.h++, BoundedQueueImpl.h++,
+	  Integers.h++, Mutex.c++, Mutex.h++, POSIX.c++, POSIX.h++,
+	  ReadWriteLock.c++, ReadWriteLock.h++, SerialPort.c++, SerialPort.h++,
+	  Socket.c++, Socket.h++, Stream.c++, Stream.h++, StreamSocket.c++,
+	  StreamSocket.h++ - added timespan_ms_t and timespan_s_t for all
+	  timeout parameters
+	* pcre-8.12/* - updated to PCRE 8.12
+	* sqlite-3.7.5/* - updated to sqlite 3.7.5
+	* configure.ac, commonc++.sln, commonc++.vcproj, commonc++db.vcproj,
+	  Makefile.am, lib/Makefile.am - updated pointers to new versions of
+	  pcre & sqlite
+	* aclocal.m4, m4/*, aux_build/ltmain.sh - updated to libtool 2.2.10
+
+2011-03-05  Mark Lindner  <mlindner@mlindner-macbookpro.local>
+
+	* LoadableModule.c++ - bugfix; return correct shared library extension
+	  on Mac OS X.
+	* tests/* - unit test fixes
+
+2011-02-27  Mark Lindner  <markl@neuromancer>
+
+	* config.osx.opts - fixed for Snow Leopard
+	* DataReader.c++, FileLogger.c++, Network.c++ - fixed compiler warnings
+	* DynamicArray.h++ - removed unnecessary operator[](uint_t) methods
+	* StreamPipe.c++ - fixed compiler warnings
+	* Array.H++, BitSet.c++, BitSet.h++, MACAddress.c++, MACAddress.h++,
+	  MemoryBlock.c++, MemoryBlock.h++, SearchPath.c++, SearchPath.h++ -
+	  changed all operator[](uint_t) to operator[](int)
+
+2011-02-26  Mark Lindner  <markl@neuromancer>
+
+	* UUID.c++ - code cleanup for Win32; added file back to the project
+	* Process.c++ - bugfix; use correct win32 priority constants in
+	  setPriority()
+	* System.c++ - use _timeb, _ftime in currentTime() instead of
+	  __timeb32, ftime32
+	* Console.c++ - #define COMMON_LVB_*, if necessary
+	* ServerSocket.c++ - use SocketHandle instead of int for socket
+	  descriptor in accept()
+	* *.vcproj - various cleanup
+	* libatomic/Makefile.am - added assembler flags for LINUX_PPC
+
+2011-02-10  Mark Lindner  <markl@neuromancer>
+
+	* Console.c++ - added missing #include
+
+2011-02-09  Mark Lindner  <markl@neuromancer>
+
+	* BasicCharTraits.h++, Buffer.h++, CircularBuffer.h++, SocketUtil.c++,
+	  MemoryStats.c++ - cleaned up some #includes of <cstdlib>
+	* CircularBufferImpl.h++ - removed some dead code
+	* CharTraits.c++ - std::strtof -> strtof (portability fix)
+	* configure.ac, cpp_config.h.in - removed problematic (and unnecessary)
+	  AC_FUNC_REALLOC macro, which caused 'undefined ::realloc' errors on
+	  some platforms; moved libbfd tests so they only run when
+	  --with-binutils is specified
+
+2011-02-06  Mark Lindner  <markl@neuromancer>
+
+	* TempFile.c++, TempFile.h++ - fixed implementation to atomically
+	  replace file contents on close (when path supplied)
+	* AllocationMap.c++, AllocationMap.h++ - modified to not subclass
+	  BitSet
+	* aclocal.m4 - regenerated with autoconf 2.67
+	* configure.ac, lib/doxygen.cfg, lib/Makefile.am, Common.h++ - bump
+	  versions
+	* plugintool/* - added '--sha1' switch
+
+2011-02-05  Mark Lindner  <markl@neuromancer>
+
+	* Dir.c++ - bugfix in rewind()
+	* CPUStats.c++ - bugfix in reset()
+	* Digest.c++, Digest.h++, MD5Digest.c++, MD5Digest.h++, SHA1Digest.c++,
+	  SHA1Digest.h++ - code refactoring and new SHA1Digest class
+
+	----- version 0.6.4 ------
+
+2010-09-03  Mark Lindner  <markl@neuromancer>
+
+	* sqlite/* - removed old version of sqlite
+	* sqlite-3.7.2/* - added new version sqlite
+	* Makefile.am, configure.ac, lib/Makefile.am - updates for sqlite-3.7.2
+	* m4/*, aux_build/* - updated files to newer versions
+
+2010-08-12  Mark Lindner  <markl@neuromancer>
+
+	* Hash.c++, Hash.h++ - added general-purpose hash functions.
+	* StreamSocket.c++, DatagramSocket.c++, Socket.c++, Socket.h++
+	  - close and de-initialize the socket if a connect() fails
+	* Locale.h++ - portability fix (__locale_t vs locale_t; LC_ALL_MASK)
+	* BasicStringImpl.h++, Blob.c++ - replaced in-line hashing code with
+	  calls to Hash::SDBMhash()
+	* BasicString.h++ - removed unnecessary #include
+	* Network.c++ - bugfixes: proper reporting of ERANGE error from
+	  getHostByName(), getHostByAddr(), getServByName(), getServByPort();
+	  use dynamic buffers and resize-and-retry in getPortForService()
+	  and getServiceForPort()
+	* InetAddress.c++ - check if Network::getHostByName() and
+	  Network::getHostByAddr() return values != 0 rather than < 0.
+
+2010-07-22  Mark Lindner  <markl@neuromancer>
+
+	* File.c++, File.h++ - added removeDirectoryTree()
+	* SocketUtil.c++ - fixed VC10 compiler error in div() call
+	* SocketMuxer.h++, Logger.h++ - fixed VC10 compiler errors
+	* commonc++props.vsprops - bumped JDK version to latest
+
+2010-06-14  Mark Lindner  <markl@neuromancer>
+
+	* PluginLoader.c++, PluginLoader.h++, PluginLoaderImpl.h++, Plugin.h++
+	  - converted PluginLoader template to a concrete class with one
+	  template function; added getClassName()
+	* Makefile.am, configure.ac, plugintool/* - added plugintool
+
+2010-05-20  Mark Lindner  <markl@neuromancer>
+
+	* DirectoryWatcher.c++ - conditionally compile inotify logic only
+	  if inotify is available
+	* Locale.c++, Locale.h++ - use pre-standardized locale functions, if
+	  available
+	* RegExp.c++ - fix compiler warning
+	* Common.h++ - bump version
+	* configure.ac - bump version
+	* aclocal.m4, cpp_config.h.in, sqlite/libtool - regenerated files;
+	  added autoconf tests for locale & inotify functions
+
+	----- version 0.6.3 ------
+
+2010-04-17  Mark Lindner  <markl@neuromancer>
+
+	* InetAddress.c++, InetAddress.h++ - added isLinkLocal()
+	* StreamSocket.h++ - added some more delegate methods
+	* AsyncIOTask.c++, AsyncIOTask.h++ - Bugfixes to error handling logic;
+	  properly report cancelled tasks with InterruptedException, EOF with
+	  EOFException, and other errors with IOException; and report
+	  failed tasks as 'completed'.
+	* *.sln, *.vcproj - updated to Visual Studio 2008.
+	* Console.c++ - removed unused variable; added #include to fix
+	  build error on Mac OS X
+
+2010-03-25  Mark Lindner  <markl@neuromancer>
+
+	* Stream.c++, Stream.h++, AsyncIOTask.c++, AsyncIOTask.h++,
+	  AsyncIOPoller.c++, AsyncIOPoller.h++ - fixes in async I/O functions:
+	  properly update the position of a ByteBuffer after the completion of
+	  an I/O operation; collect the results of the async I/O operation in
+	  AsyncIOTask::isCompleted() instead of in
+	  AsyncIOTask::getBytesTransferred(); also, automatically collect the
+	  results of the async I/O operation in AsyncIOTask::waitFor().
+	* RegExp.c++, RegExp.h++ - added escapeMeta()
+	* Locale.c++ - attempt to use setlocale() if uselocale() is not
+	  available
+	* configure.ac, libstacktrace/Makefile.am,
+	  libstacktrace/stacktrace_generi.cpp -
+	  only use BFD functions if --with-binutils was specified
+	* Runnable.h++ - added RunnableClosure
+	* Network.c++ - bugfixes in handling of error codes from
+	  gethostbyname_r() and gethostbyaddr_r()
+
+2010-03-07  Mark Lindner  <markl@neuromancer>
+
+	* EnumTraits.h++, Integers.h++ - moved EnumTraits to separate header;
+	  added EnumMap
+	* BitSet.h++ - added firstSetBit() and firstClearBit()
+	* BasicStringImpl.h++ - fixed some compiler warnings
+
+2010-01-16  Mark Lindner  <markl@neuromancer>
+
+	* Console.c++, Console.h++ - added read() and setEcho()
+
+2010-01-15  Mark Lindner  <markl@neuromancer>
+
+	* SocketMuxer.c++, SocketMuxer.h++ - added bufferSize parameter to
+	  Connection constructor
+	* SharedMemoryBlock.c++ - bugfix: properly support read-only
+	  mappings
+
+	----- version 0.6.2 ------
+
+2010-01-04  Mark Lindner  <markl@neuromancer>
+
+	* BoundedQueue.h++, BoundedQueueImpl.h++ - changed type of capacity
+	  member to uint_t.
+	* Integers.h++ - documentation fixes for enum_cast()
+
+2010-01-02  Mark Lindner  <markl@neuromancer>
+
+	* SearchPath.c++, SearchPath.h++ - added fromString()
+	* Common.h++ - bumped version; added CCXX_VERSION_*() macros
+	* JavaVirtualMachine.c++ - added -Xrs argument to JVM when starting
+	  a server VM; this disables the catching of most signals, like SIGINT
+	* SQLDatabase.c++, SQLDatabase.h++ - fixed crash in close() when called
+	  on already-closed database; return PreparedStatement as pointer
+	  rather than SharedPtr in execute()
+
+2009-12-31  Mark Lindner  <markl@neuromancer>
+
+	* DirectoryWatcher.c++, DirectoryWatcher.h++ - new class
+	* ServerStreamPipe.c++, ServerStreamPipe.h++ - fixed exception
+	  specification for constructor
+	* SharedMemoryBlock.c++, SharedMemoryBlock.h++ - modified to not
+	  throw SystemException in constructor
+	* Semaphore.c++, Semaphore.h++ - modified to not
+	  throw SystemException in constructor; added init() method
+
+2009-12-10  Mark Lindner  <markl@neuromancer>
+
+	* TimeSpec.c++ - removed unnecessary #include
+	* DynamicObjectPool.h++, DynamicObjectPoolImpl.h++ - moved #include
+	  outside namespace
+
+2009-12-07  Mark Lindner  <mlindner@chimera>
+
+	* SharedPtr.h++ - added get()
+
+2009-12-04  Mark Lindner  <markl@neuromancer>
+
+	* Common.h++ - fixed CCXX_VERSION
+
+2009-12-03  Mark Lindner  <mlindner@chimera>
+
+	* XDREncoder.c++ - bugfix: length was not being encoded for WString
+	  and Blob types
+
+2009-11-24  Mark Lindner  <markl@neuromancer>
+
+	* Thread.c++ - win32 bugfix: use manual-reset event for _cancelEvent
+	* SharedPtr.h++ - properly reimplemented dynamicCast(); replaced
+	  overriden cast operator with staticCast(); fixed typo in
+	  operator==(); made _object member private
+
+2009-11-23  Mark Lindner  <markl@neuromancer>
+
+	* Process.c++ - Reimplemented getExecutablePath() for Mac OS X, to
+	  remove dependency on CoreFoundation framework; bugfix: initialize
+	  stream members to NULL in c'tor
+	* Network.c++, Network.h++ - bugfixes in deep-copy of struct hostent
+	* ServerSocket.c++ - removed erroneous line of code in accept() that
+	  copied the server socket's local address to the accept socket
+
+	----- version 0.6.1 ------
+
+2009-10-31  Mark Lindner  <markl@neuromancer>
+
+	* Application.c++, Application.h++ - hooked up unhandled/unexpected
+	  exception handlers and made them private
+
+2009-10-28  Mark Lindner  <markl@neuromancer>
+
+	* SystemStats.c++, SystemStats.h++, CPUStats.c++, CPUStats.h++,
+	  LoadAverageStats.c++, LoadAverageStats.h++, MemoryStats.c++,
+	  MemoryStats.h++, SystemStatsCollector.c++, SystemStatsCollector.h++ -
+	  reworked stats API; finished Windows implementation of CPUStats;
+	  removed SystemStatsCollector; removed wmilib project
+
+2009-10-27  Mark Lindner  <markl@neuromancer>
+
+	* Makefile.am - add missing Windows build files to dist target
+
+2009-10-24  Mark Lindner  <markl@neuromancer>
+
+	* LogFormat.c++ - fixed formatting of thread IDs
+	* CPUStats.c++, CPUStats.h++ - finished Mac OS X implementation;
+	  bugfixes in POSIX (/proc) implementation
+	* MemoryStats.c++ - fixed Mac OS X bug
+
+2009-10-21  Mark Lindner  <markl@neuromancer>
+
+	* tests/TestHarness.c++, tests/TestHarness.h++ - reworked with improved
+	  test result output
+	* libstacktrace/stacktrace_generic.cpp - fixed crash when object
+	  file cannot be opened
+	* configure.ac, aclocal.m4 - bump version
+	* StreamPipe.c++, StreamPipe.h++ - complete sendFileHandle() and
+	  receiveFileHandle() implementation for Windows
+
+2009-08-03  Mark Lindner  <markl@neuromancer>
+
+	* ScopedPtr.h++ - added isNull() and release();
+	  throw NullPointerException where appropriate
+	* ServerSocket.c++, ServerSocket.h++ - added isListening()
+	* SocketMuxer.c++, SocketMuxer.h++ - added additional checks in init(),
+	  and changed return value to bool to indicate success
+	* InetAddress.c++, Network.c++ - bugfixes in error handling for
+	  gethostbyaddr(), gethostbyname(); implemented buffer resizing logic
+	* SharedPtr.h++ - added operator*()
+
+2009-07-11  Mark Lindner  <markl@neuromancer>
+
+	* SharedPtr.h++ - fixed reference counting bug; removed unnecessary
+	  c'tor
+
+2009-07-06  Mark Lindner  <markl@neuromancer>
+
+	* ScopedPtr.h++ - removed useless ScopedArrayPtr template
+	* DynamicArray.h++ - various enhancements
+
+2009-07-05  Mark Lindner  <markl@neuromancer>
+
+	* Version.h++, LoadableModule.c++ - removed Version::operator String().
+	* BitSet.h++ - removed operator String().
+
+2009-07-04  Mark Lindner  <markl@neuromancer>
+
+	* AllocationMap.c++, AllocationMap.h++ - reimplemented as a subclass
+	  of BitSet.
+	* BitSet.c++, BitSet.h++ - added nextSetBit(), nextClearBit().
+	* sqlite/Makefile.am, sqlite/configure.gnu - added
+	  CFLAGS=-DSQLITE_ENABLE_COLUMN_METADATA; added .vcproj file to
+	  EXTRA_DIST
+	* ServerSocket.c++ - handle EADDRINUSE in listen()
+	* SQLDatabase.c++, SQLDatabase.h++ - added some new methods
+	* configure.ac, Makefile.am, wmilib/Makefile.am - added wmilib
+	  subproject
+	* Makefile.am, configure.ac - bump version to 0.6.1
+
+2009-07-03  Mark Lindner  <markl@neuromancer>
+
+	* Socket.c++, commonc++/Socket.h++, SocketException.c++,
+	  commonc++/SocketException.h++, Private.h++ - added
+	  AddressInUseException, moved all SocketExceptions into separate
+	  source/header file.
+
+2009-06-30  Mark Lindner  <markl@neuromancer>
+
+	* InetAddress.c++, Network.c++ - Windows-specific bugfixes for
+	  handling of in_addr type.
+	* Checksum.c++, Checksum.h++, CRC32Checksum.c++, CRC32Checksum.h++
+	  - new classes
+
+2009-06-25  Mark Lindner  <markl@neuromancer>
+
+	* FileLogger.c++ - fix path construction to prevent doubled file
+	  separators when log directory is root directory.
+	* SocketMuxer.c++, SocketMuxer.h++ - made select() timeout interval
+	  configurable through constructor.
+
+2009-06-22  Mark Lindner  <markl@neuromancer>
+
+	* List.h++, ListImpl.h++, Link.h++ - removed classes
+
+2009-06-21  Mark Lindner  <markl@neuromancer>
+
+	* File.c++ - fix potential race condition in implementation of
+	  makeDirectory(); return true if directory already exists.
+	* Version.c++, Version.h++ - supplied operator<<(ostream)
+	  implementation, added fromString()
+	* SharedPtr.h++ - added isNull() and additional operator=()
+
+2009-06-03  Mark Lindner  <markl@neuromancer>
+
+	* CharsetConverter.c++ - fixed uninitialized pointer
+	* configure.ac, libatomic/Makefile.am - add platform check for Linux
+	  on PowerPC
+	* atomic_generic_ppc.s - renamed from atomic_darwin_ppc.s
+	* File.c++, File.h++ - added getDiskBlockSize() and
+	  roundSizeToBlockSize()
+	* SocketAddress.h++ - removed 'explicit' from copy c'tor
+
+	----- version 0.6 ------
+
+2009-05-26  Mark Lindner  <markl@neuromancer>
+
+	* Random.c++, SerialPort.c++ - added missing #include <unistd.h>
+
+2009-05-23  Mark Lindner  <markl@neuromancer>
+
+	* *.m4, m4/*, Makefile.am, configure.ac, ltmain.sh, aclocal.m4 -
+	  upgraded to libtool 2.2.6; moved all .m4 files to m4 directory
+	* InetAddress.h++, SocketAddress.h++ - added global operator<<()
+	* confgure.ac, cpp_config.h.in - fixed broken getXXXXbyYYYY_r tests;
+	  removed unneeded test for openpty()
+
+2009-05-22  Mark Lindner  <markl@neuromancer>
+
+	* FileName.c++ - fixed implementation of isAbsolute() for Windows
+	* Stream.c++ - added proper handling of EINTR for read(), write(),
+	  readv(), and writev()
+	* File.c++ - added proper handling of EINTR in copy()
+	* Char.c++, CircularBuffer.c++, Buffer.c++, String.c++,
+	  WChar.c++, CharTraits.c++, WCharTraits.c++ - added
+	  explicit template instantiations
+	* Thread.c++, System.c++, LoadAverageStats.c++, Service.c++ -
+	  #include statement cleanup
+	* Variant.c++, XMLElement.c++, XMLElement.h++, BasicString.h++,
+	  BasicImplString.h++ - renamed to*Long() and to*LongLong() to
+	  to*Int() and to*Int64()
+	* configure.ac, cpp_config.h.in - added AC_GNU_SOURCE to enable
+	  GNU extensions
+
+2009-05-21  Mark Lindner  <markl@neuromancer>
+
+	* Random.c++, LogFormat.c++, Process.c++, Process.h++, System.c++,
+	  System.h++, Thread.c++, Thread.h++, Application.c++, SystemLog.c++,
+	  Service.c++ - moved process-related functions from System to
+	  Process, and thread-related functions from System to Thread.
+	* pcre/configure.gnu, sqlite/configure.gnu - added wrapper scripts
+	  to suppress shared libraries and disable global installation
+
+2009-05-21  Mark Lindner  <mlindner@chimera>
+
+	* Network.c++ - fixed calls to gethostbyaddr_r() and gethostbyname_r()
+	  to transparently handle glibc bug.
+	* cpp_config.h.in, configure.ac - removed gethostbyaddr_r() test, as it
+	  is no longer needed, and it always failed when cross-compiling;
+	  changed openpty() test from AC_TRY_COMPILE to AC_CHECK_LIB; changed
+	  all remaining AC_TRY_COMPILE tests to be AC_TRY_LINK to prevent
+	  cross-compilation test failures
+
+2009-05-20  Mark Lindner  <markl@neuromancer>
+
+	* SocketMuxer.c++, SocketMuxer.h++ - added dataSent() callback;
+	  made Connection::isClosePending() public
+	* ax_cxx_gcc_abi_demangle.m4 - fixed compilation errors in code
+	  fragment
+	* configure.ac, cpp_config.h.in - added check for dladdr() function
+	* libstacktrace/stacktrace_generic.cpp - fixed compiler errors
+	  (gcc 4.3.0)
+
+2009-05-19  Mark Lindner  <markl@neuromancer>
+
+	* NetworkInterface.c++, NetworkInterface.h++, InetAddress.c++,
+	  InetAddress.h++, SocketAddress.c++, SocketAddress.h++,
+	  MulticastSocket.c++, MulticastSocket.h++, Network.c++, Network.h++,
+	  StreamSocket.c++, ServerSocket.c++, DatagramSocket.c++ -
+	  refactoring to add new InetAddress class
+	* configure.ac, cpp_config.h.in - added tests for phtread_yield(),
+	  inet_aton()
+	* Private.h++ - fixed typedef of in_addr_t for Windows
+
+2009-05-09  Mark Lindner  <markl@neuromancer>
+
+	* Hex.c++, Hex.h++, Variant.c++, UUID.c++, HexCodec.c++,
+	  HexCodec.h++ - renamed HexCodec to Hex
+
+2009-05-08  Mark Lindner  <markl@neuromancer>
+
+	* System.c++ - check TMPDIR environment variable and P_tmpdir stdio
+	  constant when determining location of system temp dir (POSIX)
+	* XDRCodec.++, XDRCodec.h++ - removed
+	* *BufferDataWriter.c++, *BufferDataReader.h++ - renamed
+	  BufferData{Reader,Writer} to ByteArrayBufferData{Reader,Writer}.
+	  Added ByteBufferData{Reader,Writer}.
+	* XDREncoder.c++, XDREncoder.h++, XDRDecoder.c++, XDRDecoder.h++ -
+	  added replacements for XDRCodec.
+	* Buffer.h++, BufferImpl.h++ - added fill(); bugfix in skip()
+
+2009-05-07  Mark Lindner  <markl@neuromancer>
+
+	* Blob.h++, CStringBuilder.h++, CStringBuilder.c++ - modified clear()
+	  to return *this
+	* DataReader.c++, DataReader.h++, DataWriter.c++, DataWriter.h++ -
+	  added support for float & double
+	* Base64Codec.c++, Base64Codec.h++ - renamed to Base64.c++, Base64.h++
+
+2009-05-05  Mark Lindner  <markl@neuromancer>
+
+	* BasicString.h++ - modified clear() to return *this
+
+2009-05-04  Mark Lindner  <markl@neuromancer>
+
+	* MemoryMappedFile.c++, SerialPort.c++, File.c++ - bugfix; handle
+	  ERROR_PATH_NOT_FOUND in addition to ERROR_FILE_NOT_FOUND (Windows).
+	* SocketMuxer.c++ - fixed deadlock in writeAll()
+
+2009-05-02  Mark Lindner  <markl@neuromancer>
+
+	* Stream.c++ - fixed erroneous throw of EOFException in Stream::read()
+	  on Windows to throw TimeoutException instead
+	* Socket.c++ - bufix; don't attempt fcntl() in setTimeout() if
+	  socket is not yet initialized; do isInitialized() check in all set*()
+	  functions.
+
+2009-04-27  Mark Lindner  <markl@neuromancer>
+
+	* Permissions.c++, Permissions.h++, FileName.h++, TimeSpec.c++,
+	  TimeSpec.h++, TimeSpan.h++, SearchPath.h++, URL.h++, UUID.h++,
+	  Locale.h++, RegExp.h++, BitSet.h++ - cleaned up toString()
+	  inconsistencies
+	* DatabaseEnv.c++, DatabaseEnv.h++, PersistentObject.h++,
+	  Database.c++, Database.h++ - removed BDB wrapper classes
+	* SQLDatabase.c++, SQLDatabase.h++, SQLException.c++,
+	  SQLException.h++ - Added SQLite wrapper classes
+	* Version.c++, Version.h++ - renamed getVersion() to toCRAString()
+	* Stream.c++, Stream.h++ - added optional 'count' parameter to
+	  readFully(ByteBuffer&) and readFully(CharBuffer&)
+	* config.opts, configure.ac, lib/doxygen.cfg, lib/doxygen.cfg.in,
+	  lib/Makefile.am, cpp_config.h.in, sqlite/* - bumped version, removed
+	  all BDB dependencies, added SQLite distribution
+
+2009-04-25  Mark Lindner  <markl@neuromancer>
+
+	* RegExp.h++ - fixed initializers in RegExpMatch, added isValid()
+	* SerialPort.c++ - removed unnecessary #include
+	* CondVar.c++ - check for EBUSY from pthread_cond_destroy()
+	* SocketAddress.c++, SocketAddress.h++ - added reset() and toString()
+	* Common.h++ - fixed ___DEPRECATED and ___NORETURN macros
+	* Numeric.h++ - added numeric_clip()
+	* SharedPtr.h++ - added operator==, operator!=
+	* Socket.c++ - reset remote and local addresses in shutdown().
+	* Socket.c++, Socket.h++, StreamSocket.c++, DatagramSocket.c++,
+	  IOException.h++ - replaced ConnectionLostException with EOFException
+	  for consistency.
+	* IOException.h++ - documentation update
+	* File.h++ - documentation fix
+	* SocketMuxer.c++, SocketMuxer.h++ - replaced connectionLost() with
+	  connectionTimedOut(), and related bugfixes
+
+2009-03-31  Mark Lindner  <mlindner@chimera>
+
+	* Dir.c++, File.h++ - added support for additional filetypes in
+	  FileAttributes
+
+2009-03-25  Mark Lindner  <mlindner@chimera>
+
+	* CircularBuffer.h++, CircularBufferImpl.h++ - bugfix: override
+	  setSize() to update the _end member
+
+2009-03-14  Mark Lindner  <markl@neuromancer>
+
+	* StreamPipe.c++, StreamPipe.h++ - added sendFileHandle() and
+	  receiveFileHandle() (partial implementation)
+
+2009-03-13  Mark Lindner  <mlindner@chimera>
+
+	* IntervalTimer.c++, IntervalTimer.h++ - new class
+	* AsyncIOTask.c++, CondVar.c++, Mutex.c++, Process.c++, Semaphore.c++,
+	  Stream.c++, Thread.c++ - replace Sleep() with SleepEx() and
+	  WaitForSingleObject() with WaitForSingleObjectEx() so that the
+	  'alertable' flag can be specified as TRUE.
+
+2009-03-08  Mark Lindner  <markl@neuromancer>
+
+	* Version.c++, Version.h++ - added toString()
+	* Locale.c++, Locale.h++ - new class
+	* Console.c++, Console.h++, WindowsConsole.c++, WindowsConsole.h++,
+	  System.c++, ConsoleLogger.c++, ConsoleLogger.h++ - refactored
+	  WindowsConsole into Console class that is available on all platforms
+	* SharedPtr.h++ - made constructor argument optional
+	* URL.c++ - bugfixes in assignment operator & copy constructor
+	  (_canonicalPath member wasn't being copied)
+	* DateTime.c++, DateTime.h++ - added getTimeZone()
+	* DateTimeFormat.c++ - began updating code to use Locale and
+	  DateTime::getTimeZone()
+
+2009-03-04  Mark Lindner  <markl@neuromancer>
+
+	* <multiple> - removed JavaScript API and Visual Studio 7.10 support
+
+2009-02-27  Mark Lindner  <mlindner@chimera>
+
+	* SystemStats.c++, SystemStats.h++, CPUStats.c++, CPUStats.h++,
+	  LoadAverageStats.c++, LoadAverageStats.h++,
+	  MemoryStats.c++, MemoryStats.h++, SystemStatsCollector.c++,
+	  SystemStatsCollector.h++ - partial implementation of new system
+	  stats API
+	* Makefile.am - updated file list
+
+2009-02-04  Mark Lindner  <mlindner@chimera>
+
+	* URL.c++, URL.h++ - added path canonicalization
+
+2009-01-30  Mark Lindner  <mlindner@chimera>
+
+	* CharTraits.c++, BasicCharTraits.c++ - fixed return value from
+	  vprintf()
+	* StreamDataWriter.c++ - bugfixes
+	* Application.c++ - fixed minor issue in text formatting in
+	  printUsage()
+
+2009-01-25  Mark Lindner  <mlindner@chimera>
+
+	* AsyncIOTask.c++ - fixed Windows event handle leak in init()
+
+2009-01-22  Mark Lindner  <mlindner@chimera>
+
+	* CharTraits.c++, BasicCharTraits.h++ - fixed return value for
+	  vprintf() to be consistent across platforms
+	* Log.c++, Log.h++ - bugfixes and new interfaces to fix
+	  crash due to improper use of varargs macros.
+
+2009-01-21  Mark Lindner  <mlindner@chimera>
+
+	* libatomic/Makefile.am, libstacktrace/Makefile.am - added -fPIC
+	  for position-independent code
+	* BasicBufferedStream.h++, BasicBufferedStreamImpl.h++ - fixed
+	  gcc 4.2.x compile errors
+	* configure.ac - added check for 'rt' library
+	* Network.c++ - bugfix to getInterfaces() (failed on 64-bit Linux)
+
+2009-01-12  Mark Lindner  <mlindner@chimera>
+
+	* Stream.c++ - handle EOF condition for overlapped I/O (Windows)
+	  and readv() (POSIX)
+	* StreamDataReader.c++ - bugfix: don't refill the buffer after a
+	  seek(); prevents premature EOFException
+
+	----- version 0.5.2 ------
+
+2009-01-11  Mark Lindner  <markl@neuromancer>
+
+	* SocketMuxer.c++, SocketMuxer.h++ - add 'immediate' flag to
+	  Connection::close(); passing false (the default) allows pending
+	  data to be written before the socket is closed (change suggested
+	  by Shaun Cummins)
+	* Numeric.h++ - added numeric_cast and numeric_clipping_cast
+	  template functions
+
+2008-12-13  Mark Lindner  <markl@neuromancer>
+
+	* AsyncIOPoller.c++, AsyncIOPoller.h++ - new class
+	* AsyncIOTask.h++ - added getFileHandle()
+	* PulseTimer.c++ - check for system clock rollback
+
+2008-12-10  Mark Lindner  <mlindner@chimera>
+
+	* File.h++ - added getPath()
+
+2008-12-09  Mark Lindner  <mlindner@chimera>
+
+	* Service.c++, Service.h++ - disable interactive error dialog boxes
+	  on Windows
+
+2008-12-08  Mark Lindner  <markl@neuromancer>
+
+	* configure.ac, cpp_config.h.in - add test for sizeof time_t; bump
+	  version
+	* TimeSpec.c++, TimeSpec.h++, Dir.c++, Timer.c++, Timer.h++,
+	  File.c++, File.h++, POSIX.c++, POSIX.h++, Windows.c++,
+	  Windows.h++, Process.c++, Process.h++, SocketMuxer.c++,
+	  SocketMuxer.h++, BoundedQueueImpl.h++, Common.h++, Integers.h++,
+	  System.c++, System.h++, Thread.c++, PulseTimer.c++, PulseTimer.h++,
+	  SocketUtil.c++, DateTime.c++, DateTime.h++, DateTimeFormat.c++,
+	  *.vcproj - replaced time_t and TimeValue with time_s_t and
+	  time_ms_t; removed dependence on _USE_32BIT_TIME_T for Windows;
+	  changed times in FileAttributes to time_ms_t
+
+2008-12-02  Mark Lindner  <mlindner@chimera>
+
+	* AsyncIOTask.c++, AsyncIOTask.h++, Stream.c++, Stream.h++,
+	  File.c++, Makefile.am - add support for async I/O
+	* Service.c++, Service.h++ - added support for '--displayname'
+	  switch.
+
+2008-11-21  Mark Lindner  <mlindner@chimera>
+
+	* Integers.h++ - moved byte_t and uint_t into ccxx namespace;
+	  added enum_cast<>() and EnumTraits
+
+2008-11-03  Mark Lindner  <mlindner@chimera>
+
+	* Thread.c++ - check for system clock rollback in trySleep()
+
+	----- version 0.5.1 ------
+
+2008-10-10  Mark Lindner  <markl@neuromancer>
+
+	* JavaContext.c++, JavaContext.h++ - added WString methods
+
+2008-10-03  Mark Lindner  <mlindner@chimera>
+
+	* System.c++, System.h++ - added setConsoleTitle()
+
+2008-09-26  Mark Lindner  <mlindner@chimera>
+
+	* FileLogger.c++ - bugfix; delete File object in destructor
+
+2008-09-22  Mark Lindner  <mlindner@chimera>
+
+	* Date.c++ - off-by-1 bugfix in isValid()
+	* DateTime.c++ - deadlock fix in static initializer
+
+2008-09-18  Mark Lindner  <mlindner@chimera>
+
+	* DataReader.c++, DataReader.h++, DataWriter.c++, DataWriter.h++
+	  - add more read/write methods
+
+2008-09-16  Mark Lindner  <markl@neuromancer>
+
+	* CharTraits.c++, WCharTraits.c++, BasicCharTraits.h++ - add
+	  rawCompare()
+	* configure.ac - bump version
+
+2008-09-15  Mark Lindner  <markl@neuromancer>
+
+	* DateTime.c++, DateTime.h++ - add isDSTActive() and getGMTOffset()
+	* BasicCharTraits.h++, CharTraits.c++, WCharTraits.c++ - add
+	  rawCompare()
+
+2008-09-10  Mark Lindner  <mlindner@chimera>
+
+	* SocketMuxer.h++ - fix doc typos
+
+2008-09-09  Mark Lindner  <mlindner@chimera>
+
+	* BitSet.c++, BitSet.h++ - add toString()
+	* Logger.c++ - bugfix
+
+2008-09-08  Mark Lindner  <markl@neuromancer>
+
+	* Integers.h++ - MinGW fix
+	* TimeSpan.c++, TimeSpan.h++ - add toString(); fix integer overflow
+	  in _computeFields(); fix uint64_t constructor to take int64_t
+	* SharedPtr.h++ - another bugfix in cast operator
+
+2008-09-05  Mark Lindner  <mlindner@chimera>
+
+	* SharedPtr.h++ - bugfix in cast operator
+	* DataEncoder.h++, StreamDataWriter.c++, DataEncoder.c++,
+	  BufferDataWriter.c++ - bugfixes in limit when writing
+
+2008-09-04  Mark Lindner  <markl@neuromancer>
+
+	* CharTraits.c++, WCharTraits.c++ - BasicCharTraits.h++ - add optional
+	  len param to find()
+	* Common.h++ - add typedef of off64_t for Windows
+	* WindowsConsole.c++, WindowsConsole.h++ - make len param optional
+	  in write()
+	* BasicCodec.c++, BasicCodec.h++ - removed
+	* Application.c++ - bugfix; check return value from processOption()
+
+2008-09-03  Mark Lindner  <mlindner@chimera>
+
+	* BufferDataReader.c++, BufferDataReader.h++,  BufferDataWriter.c++,
+	  BufferDataWriter.h++, DataReader.c++, DataReader.h++,
+	  DataWriter.c++, DataWriter.h++, StreamDataReader.h++,
+	  StreamDataWriter.h++ - refactoring of BasicCodec class
+	* Makefile.am - update file list
+
+2008-08-29  Mark Lindner  <mlindner@chimera>
+
+	* SharedPtr.h++ - add dynamicCast()
+
+2008-08-27  Mark Lindner  <mlindner@chimera>
+
+	* BasicCodec.c++, BasicCodec.h++ - bugfixes
+	* CircularBufferImpl.h++ - bugfix in fill()
+
+2008-08-26  Mark Lindner  <markl@neuromancer>
+
+	* BasicCodec.c++, BasicCodec.h++ - bugfixes; added flush()
+	* CharTraits.c++, WCharTraits.c++, BasicCharTraits.h++ -
+	  add toInt(), fromInt()
+
+2008-08-25  Mark Lindner  <mlindner@chimera>
+
+	* DateTimeFormat.c++ - use CharTraits::toLong() instead of strtol()
+	* BasicCodec.c++, BasicCodec.h++ - add flush()
+
+2008-08-19  Mark Lindner  <mlindner@chimera>
+
+	* Blob.c++, Blob.h++ - added indexOf() and lastIndexOf() for
+	  byte sequences
+
+	----- version 0.5 ------
+
+2008-08-14  Mark Lindner  <markl@neuromancer>
+
+	* WindowsConsole.c++, WindowsConsole.h++, System.c++ - moved logic
+	  that determines console size
+
+2008-08-13  Mark Lindner  <mlindner@chimera>
+
+	* DateTime.h++ - add delegator methods for setTime() and setDate()
+	* TerminalAttr.h++ - define codes unconditionally on all platforms
+	* WindowsConsole.c++, WindowsConsole.h++ - new class
+	* ConsoleLogger.c++, ConsoleLogger.h++, LogFormat.c++ - add support
+	  for text styles/colors on Windows
+	* commonc++.vcproj - update project
+
+2008-08-12  Mark Lindner  <mlindner@chimera>
+
+	* CircularBuffer.h++, CircularBufferImpl.h++ - added isFull() and
+	  fill()
+	* DateTime.c++, DateTime.h++ - added setDate() and setTime()
+
+2008-08-08  Mark Lindner  <markl@neuromancer>
+
+	* System.c++ - add missing #include <limits.h>
+	* Network.h++ - fix compiler warning
+	* Common.h++ - add new enums Endianness and CodecMode
+	* ByteOrder.h++ - add getEndianness()
+	* XDRCodec.c++, XDRCodec.h++ - replace XDRMode with CodecMode, and
+	  some associated refactoring
+	* Random.c++, UUID.c++ - fix win32 build errors
+	* CharTraits.c++, WCharTraits.c++, BasicCharTraits.h++ - fix
+	  portability issues with return value from vsprintf() and update docs
+	* BasicStringImpl.h++ - fix portability issues with return value from
+	  BasicCharTraits::vprintf()
+	* BasicCodec.c++, BasicCodec.h++ - new class (partial impl)
+	* CircularBuffer.h++, CircularBufferImpl.h++, SocketMuxer.c++,
+	  BasicBufferedStreamImpl.h++ - reverse names of read() and
+	  write() functions to match what they conceptually mean
+
+2008-07-30  Mark Lindner  <mlindner@chimera>
+
+	* DatagramSocket.c++, DatagramSocket.h++ - added MAX_DATAGRAM_SIZE
+	* lib/Makefile.am - fixed linker lines
+	* Thread.h++ - make yield() protected
+
+2008-07-10  Mark Lindner  <mlindner@chimera>
+
+	* XDRCodec.c++, XDRCodec.h++ - add support for encoding/decoding
+	  wchar_t and Variant
+	* <multiple> - rename COMMONCPP_* macros to CCXX_*
+
+2008-07-08  mlindner  <mlindner@chimera>
+
+	* HexCodec.c++ - bugfix in encode() of null Blob
+	* UUID.c++, UUID.h++ - new class
+	* Random.c++, Random.h++ - added partial impl of getBytes()
+	* Thread.h++ - doc updates; added isDetached()
+
+2008-07-07  Mark Lindner  <mlindner@chimera>
+
+	* Stream.c++ - fix Windows event handle leak
+	* BasicCharTraits.h++, CharTraits.c++, WCharTraits.c++ - added
+	  collate() method
+	* Permissions.c++, Permissions.h++ - added GROUP_READ_WRITE,
+	  OTHERS_READ_WRITE
+	* <multiple> - documentation updates
+	* Network.c++, Network.h++ - return interface count in getInterfaces()
+	* XDRCodec.c++ - fix alignment bug in decode(byte_t *, size_t)
+
+2008-07-02  mlindner  <mlindner@chimera>
+
+	* DateTimeFormat.c++, DateTimeFormat.h++ - finished impl of parse()
+	  methods
+	* Process.c++, Process.h++ - add EXIT, FAILURE exit codes
+	* SystemLog.c++, SystemLog.h++ - add logMessage() method that takes
+	  va_list
+
+2008-06-27  Mark Lindner  <markl@neuromancer>
+
+	* BasicString.h++, BasicStringImpl.h++, Blob.c++, Blob.h++ - fix
+	  memory leak / reference counting bugs
+
+2008-06-27  Mark Lindner  <mlindner@chimera>
+
+	* BasicStringImpl.h++ - fix off-by-1 allocation error; fix memory
+	  leak in operator=()
+
+2008-06-24  Mark Lindner  <mlindner@chimera>
+
+	* Integers.h++ - fix stringizing for *_WIDE_*_FMT() macros
+	* BTreeImpl.h++, BasicBufferedStreamImpl.h++ Array.h++ - fix compiler
+	  warnings
+	* BasicString.h++, BasicStringImpl.h++ - add getCapacity()
+	* (all files) - change namespace to ccxx; update copyright dates
+
+2008-06-20  Mark Lindner  <markl@neuromancer>
+
+	* configure.ac - add tests for iconv, add logic to determine warning
+	  switches for compiler
+	* config.rpath, lib-prefix.m4, lib-ld.m4, cpp_config.h.in, lib-link.m4,
+	  iconv.m4, aclocal.m4 - add iconv tests
+
+2008-06-19  Mark Lindner  <mlindner@chimera>
+
+	* Application.c++, CStringLessThanFunctor.c++, Log.c++, Logger.c++,
+	  Blob.c++ - replace str*() calls with CharTraits; remove unnecessary
+	  #include of cbits.h
+	* Buffer.c++, Char.c++, CharTraits.c++, CircularBuffer.c++,
+	  String.h++, String.c++, WChar.c++, WCharTraits.c++ - add/fix
+	  explicit template instantiations
+	* BufferImpl.h++ - fix cast warnings
+
+2008-06-18  Mark Lindner  <mlindner@chimera>
+
+	* config.opts, config.osx.opts, lib/Makefile.am, configure.ac -
+	  bump version numbers
+	* Variant.c++, Variant.h++ - add support for WString and wchar_t;
+	  remove conversion of Blob to String
+	* HexCodec.c++, HexCodec.h++ - add decode() for String -> Blob;
+	  update docs
+	* CStrLessThan.c++, CStrLessThan.h++ - renamed to
+	  CStringLessThanFunctor
+
+2008-06-17  Mark Lindner  <mlindner@chimera>
+
+	* BasicString.h++, BasicStringImpl.h++, CharTraits.c++,
+	  WCharTraits.c++, CharTraits.h++, BasicChar.h++,,
+	  CStrLessThan.c++, Char.h++ - more refactoring
+	* HexCodec.c++, HexCodec.h++, Blob.c++, Blob.h++, Variant.c++
+	  - moved Blob.toString() logic into HexCodec
+	* String.c++, WString.c++, WString.h++ - removed
+
+2008-06-16  Mark Lindner  <mlindner@chimera>
+
+	* ServerSocket.c++ - fix nonportable return-value checking for
+	  listen() and accept()
+	* Socket.c++ - use SO_EXCLUSIVEADDRUSE instead of SO_REUSEADDR on
+	  Windows; fix non-portable return-value checking for socket()
+	* SocketMuxer.c++ - reduce select() timeout to 100ms
+	* Char.c++, WChar.c++, BasicChar.h++, CharTraits.c++,
+	  WCharTraits.c++, CharTraits.h++, WString.h++ - initial refactoring
+	  for string templatization
+
+2008-06-13  Mark Lindner  <mlindner@chimera>
+
+	* Service.c++, Service.h++ - remove '-p' variant of "--pidfile", so
+	  that applications may use '-p' for other purposes
+
+	----- version 0.4.6 ------
+
+2008-06-11  mlindner  <mlindner@chimera>
+
+	* LogFormat.c++ - ensure final EOL always written
+	* Logger.c++, Logger.h++ - increase max log message size to 1K
+	* DateTimeFormat.c++, DateTimeFormat.h++ - parital implementation of
+	  parse() methods
+	* configure.ac - bump version
+
+2008-06-10  Mark Lindner  <mlindner@chimera>
+
+	* LogFormat.c++ - bugfix in non-portable use of return values from
+	  snprintf() and vsnprintf()
+
+2008-06-09  Mark Lindner  <markl@neuromancer>
+
+	* LoadableModule.h++ - documentation correction
+
+2008-06-05  Mark Lindner  <mlindner@chimera>
+
+	* File.c++ - bugfix in makeDirectory() (Windows-specific)
+	* Service.c++ - bugfixes for service shutdown (Windows-specific)
+
+2008-05-30  mlindner  <mlindner@chimera>
+
+	* Thread.c++ - bugfix: reset the cancelEvent on thread start
+
+2008-05-29  mlindner  <mlindner@chimera>
+
+	* String.c++ - fix bug in operator=(const String&) that led to
+	  double-free error on Mac OS X.
+	* CondVar.c++ - bugfix in wait() - timeout could lead to deadlock
+	  in notify*() (Windows only)
+
+2008-05-28  mlindner  <mlindner@chimera>
+
+	* Mutex.c++, Mutex.h++ - add isRecursive() and support for
+	  non-recursive mutexes on Windows
+	* Thread.c++, Thread.h++ - add atomic flag to keep track of running
+	  state
+
+2008-05-23  Mark Lindner  <mlindner@chimera>
+
+	* Private.h++, StreamSocket.c++ - handle ECONNABORTED
+
+2008-05-22  Mark Lindner  <mlindner@chimera>
+
+	* LoadableModule.c++, LoadableModule.h++ - use .so extension instead of
+	  .dylib for loadable modules on OS X.
+
+2008-05-15  Mark Lindner  <mlindner@chimera>
+
+	* ByteOrder.c++, ByteOrder.h++ - add reverseBytes() template member fn
+
+2008-05-13  Mark Lindner  <mlindner@chimera>
+
+	* String.c++, String.h++ - add getBytes()
+	* File.c++, File.h++ - add non-static getSize() function
+	* Socket.c++, SocketUtil.c++, SocketUtil.h++ - refactoring
+	* System.c++ - bugfix in setSystemTime()
+
+2008-05-07  Mark Lindner  <mlindner@chimera>
+
+	* configure.ac, cpp_config.h.in - add test for lseek64
+	* Stream.c++ - use lseek64() if available
+
+	----- version 0.4.5 ------
+
+2008-05-06  Mark Lindner  <mlindner@chimera>
+
+	* String.c++, Blob.c++, WString.c++ - fix null handling in compareTo()
+	* configure.ac, cpp_config.h.in, stacktrace_generic.cpp - fixes for
+	  testing bfd.h presence
+
+2008-05-05  Mark Lindner  <markl@neuromancer>
+
+	* Stream.c++, Stream.h++ - add template read() and write() methods that
+	  take Buffer<T>.
+	* System.c++, System.h++ - add setSystemTime()
+	* File.c++, File.h++, SearchPath.c++, FileTraverser.c++ - replace File
+	  constructor that takes FileName with one that takes String
+
+2008-05-02  Mark Lindner  <markl@neuromancer>
+
+	* DateTimeFormat++ - fix transposed formats for default constructor
+	  args
+
+2008-05-01  Mark Lindner  <markl@neuromancer>
+
+	* DateTimeFormat.c++ - fix off-by-1 error when formatting day-of-year
+	* Timer.c++ - fix broken time calculations for POSIX
+
+2008-04-29  Mark Lindner  <mlindner@chimera>
+
+	* Log.h++ - fully-qualify LogLevel enum constants
+	* String.c++, WString.c++ - fix potential memory leak in reserve()
+	* Blob.c++ - fix potential memory leak in reserve(); create new
+	  buffer as needed in setLength()
+	* String.c++, String.h++, WString.c++, WString.h++, Blob.c++,
+	  Blob.h++ - fix bugs in representation of 'null' value
+
+2008-04-28  Mark Lindner  <mlindner@chimera>
+
+	* DateTimeFormat.c++, DateTimeFormat.h++ - added new format()
+	  methods that take raw char buffer
+	* CStringBuilder.c++, CStringBuilder.h++ - new class
+	* LogFormat.c++, LogFormat.h++ - change LogLevel enum to be
+	  mask-friendly; add set*Format() methods; use DateTimeFormat instead
+	  of strftime();
+	* Log.h++ - add getFileLogger() and geConsoleLogger()
+	* Logger.c++, Logger.h++ - add log level mask and enableLogLevel(),
+	  disableLogLevel()
+
+2008-04-27  Mark Lindner  <markl@neuromancer>
+
+	* Network.c++ - add logic to fetch MAC addresses for network
+	  interfaces on Mac OS X
+	* ScopedPtr.h++ - added ScopedArrayPtr
+
+2008-04-18  Mark Lindner  <mlindner@chimera>
+
+	* BitSet.h++, BitSet.c++ - added assignment operator for Bit class
+
+2008-04-16  Mark Lindner  <mlindner@chimera>
+
+	* SerialPort.c++, SerialPort.h++ - Windows-specific fixes in
+	  setFlowControl(); override setTimeout() for Windows-specific
+	  SetCommTimeout call
+	* Stream.h++ - made setTimeout() virtual
+	* String.c++, WString.c++ - fixes to printf() functions
+
+2008-04-15  Mark Lindner  <mlindner@chimera>
+
+	* Stream.c++ - rewrite Windows-specific code in read() and write()
+	  to fix problems with overlapped I/O
+
+2008-04-11  Mark Lindner  <mlindner@chimera>
+
+	* Stream.c++ - check return value from ReadFile() and WriteFile()
+	  and throw exception if zero
+	* ScopedPtr.h++ - new template
+
+2008-04-10  Mark Lindner  <markl@neuromancer>
+
+	* String.c++, String.h++, WString.c++, WString.h++ - bugfixes in
+	  insert() member functions
+
+2008-04-10  Mark Lindner  <mlindner@chimera>
+
+	* DynamicArray.h++ - fix signed/unsigned warnings
+	* BitSet.c++, BitSet.h++ - add copy constructor for BitSet::Bit
+
+2008-04-09  Mark Lindner  <mlindner@chimera>
+
+	* DynamicArray.h++, Array.h++ - fixes for operator[]
+	* HexCodec.c++, HexCode.h++ - renamed _toHex() and _fromHex() to
+	  encodeHexDigit() and decodeHexDigit() and made them public.
+
+2008-04-08  mlindner  <mlindner@chimera>
+
+	* DynamicArray.h++ - new template
+	* ac_jni_lib_dirs.m4 - fix JNI linker switches for Mac OS X
+	* Variant.h++ - documentation update
+	* configure.ac - bump version
+
+2008-04-02  Mark Lindner  <mlindner@chimera>
+
+	* Integers.h++ - added parameterized forms of FMT() macros
+
+2008-03-31  Mark Lindner  <mlindner@chimera>
+
+	* CircularBufferImpl.h++ - fix typo in advanceWritePos()
+
+2008-03-26  Mark Lindner  <mlindner@chimera>
+
+	* Blob.h++ - fix implementation of operator<< function
+	* Char.h++ - add typecasts to fix warnings
+	* CircularBuffer.h++, CircularBufferImpl.h++ - bugfix in resetPeekPos()
+
+2008-03-25  mlindner  <mlindner@chimera>
+
+	* Blob.c++ - bugfix in compareTo(); made toString() more efficient
+
+2008-03-21  Mark Lindner  <mlindner@chimera>
+
+	* String.c++ - bugfix in Windows impl of String::printf()
+
+2008-03-20  Mark Lindner  <mlindner@chimera>
+
+	* Variant.c++ - bugfixes in operator==()
+	* Socket.c++ - bugfix in waitForIO() - invalid timeval passed to
+	  select() when _sotimeout == -1
+	* CircularBuffer.c++ - bugfix in write(Stream&, size_t)
+
+2008-03-17  Mark Lindner  <markl@neuromancer>
+
+	* CircularBuffer.h++, CircularBufferImpl.h++ - added additional peek
+	  methods; refactoring to simplify code & fix bugs
+
+2008-03-14  Mark Lindner  <markl@neuromancer>
+
+	* Blob.c++, Blob.h++, Variant.c++, Variant.h++ - added support for
+	  arbitrary binary data in Variant
+	* String.c++ - bugfix; check for NULL in hash()
+
+	----- version 0.4.4 ------
+
+2008-03-10  Mark Lindner  <mlindner@chimera>
+
+	* Windows.c++ - encodePermissions() returns NULL security descriptor
+	  for now, until we can figure out how to properly do this conversion.
+
+2008-03-04  mlindner  <mlindner@chimera>
+
+	* FileLogger.c++, FileLogger.h++ - bugfix in log rotation logic;
+	  add setMaxLogSize() and setRotateCount()
+	* Logger.c++, Logger.h++, Log.c++, Log.h++ - do singleton cleanup
+	  using atexit() instead of with auto_ptr; move critical section lock
+	  out of Logger into Log; add setLogFileMaxSize() and
+	  setLogFileRotateCount() to Log.
+	* Stream.c++ - bugfix in Windows impl of seek() (incorrect computation
+	  of return value)
+
+2008-02-28  Mark Lindner  <mlindner@chimera>
+
+	* Windows.c++ - fix broken implementation of encodePermissions()
+	* Permissions.c++, Permissions.h++ - add *_ALL masks.
+
+2008-02-27  Mark Lindner  <mlindner@chimera>
+
+	* BoundedQueue.h++, BoundedQueueImpl.h++ - added reset() method
+	* SerialPort.c++, SerialPort.h++ - added mark & space parity,
+	  1.5 stop bits
+
+2008-02-14  Mark Lindner  <mlindner@chimera>
+
+	* BoundedQueueImpl.h++ - bugfix; incorrect exception throws in
+	  tryTake()
+
+2008-02-12  mlindner  <mlindner@chimera>
+
+	* StreamSocket.c++ - bugfix; call close() from d'tor
+
+2008-02-06  Mark Lindner  <mlindner@chimera>
+
+	* BitSet.h++ - added getWordDiff()
+
+2008-02-01  Mark Lindner  <mlindner@chimera>
+
+	* Thread.c++ - print stack trace for unhandled exceptions
+
+2008-02-01  Mark Lindner  <markl@neuromancer>
+
+	* StreamSocket.c++ - rewrite broken read() and write() gather/scatter
+	  functions (Windows-specific)
+	* pcre/Makefile.am - add missing files to dist
+
+2008-01-24  Mark Lindner  <mlindner@chimera>
+
+	* StreamSocket.c++ - set local address in setSocketHandle()
+
+2008-01-23  Mark Lindner  <mlindner@chimera>
+
+	* URL.c++, URL.h++ - replace cumbersome String() cast operator with
+	  toString() method
+	* RegExp.c++ - pass REG_EXTENDED flag to regexec()
+	* BoundedQueueImpl.h++ - fix put() and tryPut() to call notify()
+	  instead of notifyAll()
+	* ServerSocket.h++, SharedPtr.h++, ConsoleLogger.h++,
+	  XMLElementIterator.h++ - documentation corrections/updates
+	* Log.c++, Log.h++ - added setConsoleLogger()
+
+2008-01-18  Mark Lindner  <mlindner@chimera>
+
+	* Char.c++ - fix definition of Char::NewLine
+	* Thread.c++ - bugfix: clear cancellation flag when starting thread;
+	  catch exceptions in virtual functions
+
+2008-01-16  Mark Lindner  <mlindner@chimera>
+
+	* Plugin.c++, Plugin.h++, PluginLoader.h++, PluginLoaderImpl.h++ -
+	  refactoring to store name, version, & author in static symbols;
+	  also capture the build date/time within the plugin
+
+2008-01-15  Mark Lindner  <mlindner@chimera>
+
+	* Log.c++, Log.h++ - wrap Logger instances in auto_ptr
+
+2008-01-11  Mark Lindner  <mlindner@chimera>
+
+	* commonc++props.vsprops - switch to newest jdk & expat
+	* File.c++ - fix call to CreateFile() to always enable FILE_SHARE_READ
+	  and FILE_SHARE_WRITE
+	* StreamSocket.c++ - fix setSocketHandle() to record the remote
+	  address in _raddr
+	* ServerSocket.c++ - fix accept() to properly respect the socket
+	  timeout
+
+	----- version 0.4.3 ------
+
+2008-01-08  Mark Lindner  <markl@neuromancer>
+
+	* CriticalSection.h++, Thread.c++, Thread.h++, ThreadLocal.h++,
+	  ThreadLocalImpl.h++, ThreadLocalCounter.h++, Windows.c++,
+	  Windows.h++, System.c++, ThreadLocalCounter.c++, POSIX.c++,
+	  POSIX.h++ - extensive bugfixing and code cleanup for TLS logic;
+	  changed Thread::currentThread() to return a pointer and eliminated
+	  Thread::isForeign()
+
+2007-12-30  Mark Lindner  <markl@neuromancer>
+
+	* Windows.c++, Windows.h++, ThreadLocal.h++, ThreadLocalImpl.h++,
+	  Thread.c++ - rewrite of Windows TLS logic to fix bugs & memory
+	  leaks; fix potential race condition with ThreadLocal::_init();
+	  add ThreadLocal::getSlotCount()
+	* Service.h++ - reorder members to eliminate gcc warning
+
+2007-12-29  Mark Lindner  <markl@neuromancer>
+
+	* libstacktrace/Makefile.am - fix conditionals for MinGW
+	* pcre/* - updated to PCRE 7.4 (resolves gcc internal error on MinGW)
+	* configure.ac, lib/Makefile.am - MinGW fixes
+	* Random.c++ - fix MinGW build error
+	* Windows.c++ - remove unused variable
+	* Service.c++ - reorder initializers to eliminate gcc warning
+	* WChar.h++ - fix signed/unsigned warnings
+	* WString.c++ - fix MinGW build errors
+	* SerialPort.c++ - add missing case statement
+	* cbits/cbits.h - add new defines for snwprintf, vsnwprintf for MinGW
+	* File.c++ - remove unused variables
+	* WChar.h++ - add docs
+	* WString.c++, WString.h++ - more implementation
+
+2007-12-21  Mark Lindner  <markl@neuromancer>
+
+	* Variant.c++, Variant.h++ - added get() methods
+	* Integers.h++ - fixed large negative constants to eliminate gcc
+	  warnings
+
+	----- version 0.4.2 ------
+
+2007-12-19  Mark Lindner  <mlindner@chimera>
+
+	* String.h++, WString.h++ - added operator^=()
+
+2007-12-18  Mark Lindner  <markl@neuromancer>
+
+	* Common.h++ - added WNUL
+	* FileLogger.c++, FileLogger.h++ - refactor openFile()
+	* WString.c++, WString.h++, WChar.c++, WChar.h++ - incremental
+	  improvements
+	* Lock.h++ - add docs
+	* Random.c++, Random.h++ - add nextDouble()
+	* Common.h++ Added COMMONCPP_ZERO() macro
+
+2007-12-17  Mark Lindner  <mlindner@chimera>
+
+	* SharedPtr.h++ - made destructor virtual and made _object
+	  protected, to allow subclassing
+	* BoundedQueueImpl.h++ - bugfix: remove variable initialization to 0
+	* Application.c++, Application.h++ - made _compileDate and
+	  _compileTime protected
+
+2007-12-14  Mark Lindner  <mlindner@chimera>
+
+	* SharedPtr.h++ - added operator void *().
+
+2007-12-13  Mark Lindner  <markl@neuromancer>
+
+	* File.c++, File.h++ - added non-static remove()
+	* BitSet.h++ - fix getWordCount() to return size_t
+
+2007-12-10  Mark Lindner  <mlindner@chimera>
+
+	* MACAddress.c++, MACAddress.h++ - added operator[]
+	* Socket.c++, Socket.h++, SocketAddress.c++, SocketAddress.h++,
+	  Database.c++, Database.h++ - move exception constructor impls
+	  into source files
+	* XMLElement.h++ - fix documentation
+	* BoundedQueue.h++, BoundedQueueImpl.h++ - added setCapacity()
+	* TerminalAttr.h++ - rename ESC to TERMATTR_ESC
+	* Log.h++ - fix Log_*() macros to use fully-qualified class names
+	* XDRCodec.c++, XDRCodec.h++ - pass large numeric values as const &
+	* DataFormatException.h++ - fix typo in #include guard
+	* ScopedLock.h++ - fix synchronized() macro to use fully-qualified
+	  class name
+	* ScopedReadWriteLock.h++ - add synchronized_read(),
+	  synchronized_write() macros
+
+2007-12-07  Mark Lindner  <mlindner@chimera>
+
+	* FileLogger.h++ - fix potential member alignment issue
+	* BitSet.c++, BitSet.h++ - added flip(uint_t)
+	* JavaScriptClassImpl.h++, JavaScriptClassPrivate.c++
+	  - remove debug printf()
+
+2007-12-06  Mark Lindner  <markl@neuromancer>
+
+	* BitSet.c++, BitSet.h++, TimeSpec.c++ - add swap(), setWord(),
+	  operator>>=, operator<<=, operator>>, operator<<, operator~,
+	  operator|=, operator&=, operator^=, isAllClear();
+	  rename getBlock() to getWord() and getBlockCount() to getWordCount();
+	  bugfix in memcpy() calls
+
+	----- version 0.4.1 ------
+
+2007-12-06  Mark Lindner  <mlindner@chimera>
+
+	* SharedPtr.h++ - added operator!()
+
+2007-12-05  Mark Lindner  <mlindner@chimera>
+
+	* DateTime.c++ - DST bugfix in operator time_t()
+
+2007-12-03  Mark Lindner  <markl@neuromancer>
+
+	* PulseTimer.h++ - fix signature of pulse()
+	* FileLogger.h++, Log.h++, Log.c++ - minor refactoring to allow
+	  FileLogger to be subclassed/replaced
+
+2007-11-29  Mark Lindner  <mlindner@chimera>
+
+	* CircularBufferImpl.h++ - buffer overrun and other bugfixes
+
+2007-11-28  Mark Lindner  <mlindner@chimera>
+
+	* CondVar.c++ - deadlock bugfix; _waitersCount wasn't decremented
+	  when wait() timed out, so all subsequent notify*() calls led to
+	  deadlock (Windows only)
+
+2007-11-21  Mark Lindner  <mlindner@chimera>
+
+	* Integers.h++ - added INT64_WIDE_FMT, UINT64_WIDE_FMT
+	* WChar.c++, WChar.h++, WString.c++, WString.h++ - new (untested)
+	  classes
+
+2007-11-19  Mark Lindner  <mlindner@chimera>
+
+	* XMLElement.c++ - bugfix in operator()(const String&)
+	* pcre/Makefile.am - add missing files to dist
+	* *msvc-7.10.* - regenerated
+	* XMLElement.c++, XMLElement.h++ - replace cast operators with to*()
+	  methods, to resolve ambiguity between operator bool() and
+	  operator void *().
+	* SearchPath.h++ - added length()
+	* Service.h++, Socket.h++, Application.h++ - documentation corrections
+	* System.c++ - throw exception if GetModuleFileName() fails
+
+2007-11-16  Mark Lindner  <mlindner@chimera>
+
+	* XMLElement.h++ - documentation corrections
+
+2007-11-08  Mark Lindner  <mlindner@chimera>
+
+	* Windows.c++, Windows.h++, File.c++, DLLMain.c++, Dir.c++, Dir.h++,
+	  Semaphore.c++, SharedMemoryBlock.c++, ServerStreamPipe.c++
+	  - rewrite/simplify Windows::decodePermissions() logic
+	* *.vcproj, Common.h++ - #define _USE_32BIT_TIME_T to fix memory
+	  corruption with FileAttributes object.
+	* SerialPort.c++ - specify FILE_FLAG_OVERLAPPED so I/O isn't serialized
+
+2007-11-07  Mark Lindner  <mlindner@chimera>
+
+	* SerialPort.c++, SerialPort.h++ - bugfixes for Windows
+	* FileName.c++, FileName.h++ - added another constructor
+	* File.h++ - added TypeUnknown to FileType enum and added
+	  a constructor to FileAttributes to initialize the object to default
+	  values
+
+2007-11-02  Mark Lindner  <mlindner@chimera>
+
+	* String.c++, String.h++ - fix chop(), add reverseChop()
+
+2007-10-31  Mark Lindner  <mlindner@chimera>
+
+	* Integers.h++, BitSet.c++ - added macros for bitwise operations
+
+2007-10-26  Mark Lindner  <mlindner@chimera>
+
+	* BoundedQueue.h++, BoundedQueueImpl.h++ - added shutdown() and
+	  isShutdown()
+	* XMLElementConstIterator.h++ - add docs
+
+2007-10-26  Mark Lindner  <markl@neuromancer>
+
+	* Socket.c++, Socket.h++ - added setTCPDelay(), getTCPDelay()
+
+	----- version 0.4 ------
+
+2007-10-15  Mark Lindner  <mlindner@chimera>
+
+	* System.c++, System.h++ - add getExecutableDir()
+	* Service.c++, Service.h++ - add setWorkingDir()
+	* Variant.c++, Variant.h++ - add hasKey()
+
+2007-10-08  Mark Lindner  <mlindner@chimera>
+
+	* BitSet.c++, BitSet.h++ - add write() and stream << operator
+
+2007-10-03  Mark Lindner  <mlindner@chimera>
+
+	* DatagramSocket.c++, DatagramSocket.h++ - refactored send() and
+	  receive() methods to take raw buffers.
+	* Application.c++, Application.h++ - add printError()
+
+2007-10-03  Mark Lindner  <markl@neuromancer>
+
+	* JavaScriptPropertyIterator.c++, Iterator.h++, BTree.h++,
+	  BTreeImpl.h++, Database.h++ - changed Iterator interface
+	* InvalidArgumentException.h++ - new class
+	* XMLElement.c++, XMLElement.h++, XMLDocument.c++, XMLDocument.h++,
+	  XMLElementIterator.c++, XMLElementIterator.c++,
+	  XMLElementConstIterator.c++, XMLElementConstIterator.c++ - API
+	  rewrite
+
+2007-09-26  Mark Lindner  <mlindner@chimera>
+
+	* SerialPort.c++ - use correct flags for open()
+	* Stream.c++, Stream.h++ - add readFully() and writeFully() methods
+
+2007-09-24  Mark Lindner  <mlindner@chimera>
+
+	* XMLDocument.c++, XMLDocument.h++, XMLElement.c++, XMLElement.h++ -
+	  added additional methods (mostly for const-ness).
+	* Variant.c++ - bugfixes
+	* String.c++, String.h++ - added toUInt() and toULong()
+
+2007-09-20  Mark Lindner  <markl@neuromancer>
+
+	* Variant.c++, Variant.h++ - completed implementation & fixed some bugs
+	* String.c++, String.h++ - added toFloat()
+
+2007-09-19  Mark Lindner  <mlindner@chimera>
+
+	* JavaScriptPropertyIterator.c++, JavaScriptPropertyIterator.h++ -
+	  new class
+	* JavaScriptValue.c++, JavaScriptValue.h++, JavaScriptObject.c++,
+	  JavaScriptObject.h++, JavaScriptContext.c++, JavaScriptContext.h++ -
+	  more API enhancements
+
+2007-09-18  Mark Lindner  <markl@neuromancer>
+
+	* MACAddress.c++, MACAddress.h++, NetworkINterface.h++, Network.c++ -
+	  added MACAddress
+	* JavaScriptObject.c++, JavaScriptObject.h++, JavaScriptContext.c++,
+	  JavaScriptContext.h++ - added a few more methods
+
+2007-09-17  Mark Lindner  <mlindner@chimera>
+
+	* Variant.c++, Variant.h++ - add setType() and getKeys()
+	* JavaScriptObject.c++, JavaScriptObject.h++ - add new constructor
+	  that takes JavaScriptValue
+	* JavaScriptContext.c++, JavaScriptContext.h++ - made virtual; added
+	  makeObject() and makeArray()
+	* JavaScriptRuntime.c++, JavaScriptRuntime.h++ - made virtual; added
+	  wrapContext()
+
+2007-09-16  Mark Lindner  <markl@neuromancer>
+
+	* ScopedReadWriteLock.h++ - renamed from ReadWriteLocker.h++
+	* Lock.h++, ScopedLock.h++ - new classes
+	* MutexLocker.h++, SemaphoreLocker.h++, CriticalSectionGuard.h++ -
+	  removed
+	* Mutex.h++, Semaphore.h++, CriticalSection.h++ - classes now
+	  extend Lock, so they can all be used with the synchronized() macro
+	* Common.h++ - removed DLL_EXPORT
+
+2007-09-14  Mark Lindner  <mlindner@chimera>
+
+	* Exception.h++ - add toString() method
+	* JavaScriptRuntime.c++, JavaScriptRuntime.h++,
+	* JavaScriptContext.c++, JavaScriptContext.h++,
+	  JavaScriptObject.c++, JavaScriptObject.h++,
+	  JavaScriptClass.h++, JavaScriptClassImpl.h++,
+	  JavaScriptValue.c++, JavaScriptValue.h++,
+	  JavaScriptClassPrivate.c++ JavaScriptClassPrivate.h++,
+	  JavaScript.c++, JavaScript.h++,
+	  JavaScriptException.c++, JavaScriptException.h++
+	  - initial implementation of JavaScript wrapper API
+	* Variant.c++, Variant.h++ - partial implementation
+	* UnsupportedOperationException.h++ - new class
+	* Common.h++ - added COMMONCPP_FWD_DECL() macro
+
+2007-09-04  mlindner  <mlindner@chimera>
+
+	* Thread.c++ - fix trySleep() to sleep in small increments
+
+2007-08-22  Mark Lindner  <markl@neuromancer>
+
+	* Timer.c++, Timer.h++ - improved to calculate kernel & user time
+	  in addition to real time
+	* LogFormat.c++ - bugfix for extracting filename from full source file
+	  path on Windows
+
+2007-08-21  Mark Lindner  <markl@neuromancer>
+
+	* SerialPort.c++, SerialPort.h++ - new class
+	* Integers.h++ - fix docs/ifdef for *_FMT macros
+	* Semaphore.c++, Semaphore.h++ - fix constructor signature
+
+2007-08-21  mlindner  <mlindner@chimera>
+
+	* SocketMuxer.c++, Logger.h++, SocketMuxer.h++, Thread.h++ - fix more
+	  Windows dllexport warnings.
+	* System.c++, System.h++ - add getConsoleSize()
+
+2007-08-18  Mark Lindner  <markl@neuromancer>
+
+	* String.c++, String.h++ - added append() functions for int output
+	  in arbitrary base; added clear() function
+
+2007-08-17  Mark Lindner  <mlindner@chimera>
+
+	* Service.h++ - documentation correction
+	* Plugin.c++, Plugin.h++ - add dll export stuff
+	* NetworkInterface.c++ - fix msvc compiler warnings
+	* SocketMuxer.h++ - fix msvc compiler warning
+	* BoundedQueueImpl.h++ - fix msvc compiler warning
+
+2007-08-16  mlindner  <mlindner@chimera>
+
+	* ac_jni_lib_dirs.m4, aclocal.m4, config.osx.opts, configure.ac,
+	  cpp_config.h.in, ltmain.sh, missing, pcre/Makefile.in,
+	  pcre/configure - update to newest autoconf/automake/libtool;
+	  OS X build fixes
+	* *.vcproj - fix msvc compiler warnings
+
+2007-08-13  Mark Lindner  <markl@neuromancer>
+
+	* CircularBuffer.h++, CircularBufferImpl.h++, SocketMuxer.c++,
+	  SocketMuxer.h++ - fix read/write line and peek()
+
+2007-08-10  Mark Lindner  <mlindner@chimera>
+
+	* LogFormat.c++, LogFormat.h++, Application.c++, Application.h++,
+	  XMLDocument.c++, XMLDocument.h++, XMLElement.c++, XMLElement.h++,
+	  DateTimeFormat.c++, DateTimeFormat.h++ - refactoring to move the
+	  STL members out of the header files (fixes DLL linkage warnings on
+	  Windows)
+	* String.c++, String.h++ - added isInteger() and pad()
+	* Buffer.c++, BufferImp.h++ - added peek()
+	* Char.c++, Char.h++ - new class
+
+2007-08-03  Mark Lindner  <mlindner@chimera>
+
+	* SocketMuxer.c++, SocketMuxer.h++ - return from run() immediately if
+	  not initialized; don't do idle timeouts if idle limit is 0
+	* Service.c++ - simplified the "debug" mode logic
+
+2007-08-02  Mark Lindner  <markl@neuromancer>
+
+	* JavaScope.h++ - new class
+	* InterruptedException.h++ - new class
+	* BoundedQueue.h++, BoundedQueueImpl.h++ - added interruptability
+	* Service.c++, Service.h++ - add debug() method
+	* Thread.c++, Thread.h++ - make start() and stop() virtual;
+	  fix join() to check for errors and return bool
+	* Socket.h++ - add ConnectionRefusedException
+	* SocketUtil.c++ - fix error handling in connectSocket()
+
+2007-07-30  Mark Lindner  <mlindner@chimera>
+
+	* String.h++ - add length() for convenience
+	* String.c++ - startsWith() and endsWith() now return true for empty
+	  string argument
+	* LoadableModule.c++, LoadableModule.h++ - add isLoadableModuleFile()
+	* PluginLoader.h++, PluginLoaderImpl.h++, Plugin.h++ - code refactoring
+	* SearchPath.c++, SearchPath.h++ - add getDirectory(),
+	  getDirectoryCount();
+
+2007-07-27  Mark Lindner  <markl@neuromancer>
+
+	* LoadableModule.h++ - add isOpen(), getPath(), setPath(), and make
+	  constructor arg optional
+
+2007-07-25  Mark Lindner  <markl@neuromancer>
+
+	* ax_cxx_gcc_abi_demangle.m4, cpp_config.h.in, libstacktrace/*,
+	  aclocal.m4, lib/Makefile.am, lib/System.c++, lib/commonc++/System.h++
+	  - more libstacktrace changes
+	* JavaVirtualMachine.c++, JavaVirtualMachine.h++, JavaException.h++,
+	  JavaContext.c++, JavaContext.h++, JavaBuffer.c++ - refactoring to
+	  support use in native method implementations (Java->C++)
+
+2007-07-18  Mark Lindner  <markl@neuromancer>
+
+	* DLLMain.c++ - add stacktrace library init/teardown calls
+	* libstacktrace/*, System.c++ - move stacktrace logic into its own
+	  library
+
+2007-07-11  Mark Lindner  <markl@neuromancer>
+
+	* pcre/* - update to pcre version 7.2
+	* RegExp.c++, RegExp.h++ - internalize PCRE dependencies
+	* Makefile.am - link with PCRE on POSIX systems also; don't use system
+	  regexp functions
+	* Dir.c++, File.c++, File.h++ - add tests/methods for pipe file type
+
+2007-07-09  Mark Lindner  <markl@neuromancer>
+
+	* String.c++, Integers.h++ - added INT64_FMT and UINT64_FMT macros
+	* StreamPipe.c++, MemoryMappedFile.c++, TempFile.c++, File.c++ -
+	  correctly check for error code returned from CreateFile()
+
+2007-06-28  Mark Lindner  <markl@neuromancer>
+
+	* Date.c++, Date.h++, Time.c++, Time.h++, TimeSpan.c++, TimeSpan.h++ -
+	  changes from Martin Trieu (new operators); stubbed out support
+	  for "week of year"
+	* DateTimeFormat.c++, DateTimeFormat.h++ - stubbed out support for
+	  "week of year"
+	* File.c++ - bugfix; incorrect test for error from CreateFile()
+
+2007-06-27  Mark Lindner  <markl@neuromancer>
+
+	* Date.c++, Date.h++ - added getDayOfYear(); removed format();
+	  minor bugfixes
+	* Time.c++, Time.h++ - removed format()
+	* DateTime.c++, DateTime.h++ - added two constructors; removed
+	  format();
+	* DateTimeFormat.c++, DateTimeFormat.h++ - rewritten to not rely
+	  on strftime() for bulk of formatting; implement consistent format
+	  directives for all platforms
+	* CondVar.c++ - fix typo in comment
+	* TimeSpan.h++ - remove unnecessary overloaded operator+() functions
+	* String.c++ - bugfix in printf()
+
+	----- version 0.3.1 ------
+
+2007-04-09  Mark Lindner  <markl@neuromancer>
+
+	* String.c++, String.h++ - add indexOfAnyOf(), lastIndexOfAnyOf(),
+	  containsAnyOf(), startsWithAnyOf(), endsWithAnyOf()
+	* FileName.c++ - fixes to handle all valid file separators on a given
+	  platform, not just the default file separator
+
+2007-03-28  Mark Lindner  <markl@neuromancer>
+
+	* JavaVirtualMachine.c++, JavaVirtualMachine.h++ - bugfix in
+	  parseSignature(); added call*StringMethod() methods (from Alasdair
+	  Mackintosh); add double-cast to eliminate "type punned pointer"
+	  warnings from gcc
+	* TimeSpec.c++ - remove debug printf
+	* CondVar.h++ - clarify documentation for wait()
+	* URL.c++, URL.h++ - parser fixes to handle "file:///" syntax;
+	  URL encoding bugfix
+	* README - fix typo
+
+2007-03-13  Mark Lindner  <mlindner@chimera>
+
+	* File.c++, File.h++ - add TruncateElseCreate mode
+	* libatomic/atomic.h, libatomic/Makefile.am - don't install the lib;
+	  add missing #include
+	* configure.ac - added test for x86_32 linux
+	* tests/Makefile.am - don't install libdummy; added .pc file
+	* tests/commonc++testmain.pc.in, configure.ac - added .pc file
+
+	----- version 0.3 ------
+
+2007-03-03  Mark Lindner  <markl@neuromancer>
+
+	* Application.c++, Application.h++ - exit the process in the default
+	  shutdown handler; exception-safety fix
+	* <multiple> - exception-safety fixes; added exception specifications
+
+2007-02-27  Mark Lindner  <markl@neuromancer>
+
+	* System.c++, System.h++, lib/Makefile.am - add MacOSX specific logic
+	  into getExecutablePath()
+
+2007-02-12  Mark Lindner  <markl@neuromancer>
+
+	* LoadableModule.c++, LoadableModule.h++ - bugfix in filenameForStem()
+	  for Mac OS X
+	* DynamicObjectPool.h++, DynamicObjectPoolImpl.h++, SocketMuxer.h++ -
+	  fix DynamicObject pool to accept reset function in constructor
+	  rather than have reset member function template param; the latter
+	  causes lockup in VC++ 2003 compiler.
+
+2007-02-11  Mark Lindner  <markl@neuromancer>
+
+	* StaticObjectPool.h++, StaticObjectPoolImpl.h++,
+	  DynamicObjectPool.h++, DynamicObjectPoolImpl.h++,
+	  ObjectPool.h++, SocketMuxer.h++, BTree.h++ - object pool
+	  refactoring
+
+2007-02-10  Mark Lindner  <markl@neuromancer>
+
+	* Application.h++, Application.c++ - make printUsage() protected
+	  virtual; use executable filename rather than full name in error
+	  messages
+	* ByteOrder.c++ - fix implementation of 64-bit hton/ntoh functions
+	* BasicBufferedStreamImp.h++ - fix segmentation fault
+	* Thread.c++, Thread.h++ - fix cancellation to not use pthread_cancel()
+	  and pthread_testcancel() -- causes conflicts with C++ exception
+	  handling; added trySleep()
+	* PulseTimer.c++ - use trySleep()
+	* tests/* - new testing harness
+	* Windows.c++, Windows.h++ - add decodePathName()
+	* DateTime.c++ - add support for %n and %t for Windows in format()
+	* System.c++ - convert temp dir to long path on Windows
+
+2007-02-09  Mark Lindner  <markl@neuromancer>
+
+	* cbits/Makefile.am, lib/Makefile.am, libatomic/Makefile.am,
+	  pcre/filelist.txt - added missing files to dist
+
+2007-02-08  Mark Lindner  <markl@neuromancer>
+
+	* String.h++ - add pragmas to suppress VC++ warnings
+	* Common.h++, JavaBuffer.h++, JavaVirtualMachine.h++,
+	  JavaException.h++, JavaThreadLocalBuffer.h++ - change COMMONCPPJ_API
+	  to COMMONCPPJVM_API
+	* MutexLocker.h++, CriticalSectionGuard.h++ - remove declspec's to
+	  fix compile errors in VS2003.NET.
+	* commonc++db-msvc7.10.vcproj - added missing project
+
+2007-02-04  Mark Lindner  <markl@neuromancer>
+
+	* CriticalSectionGuard.h++ - new class
+	* String.h++ - remove declspec from StringVec
+	* Permissions.h++ - fix Visual C++ compiler warnings
+	* MutexLocker.h++ - add synchronized() block support
+	* Common.h++ - new macros, fix compiler warnings
+	* JavaVirtualMachine.c++, JavaVirtualMachine.h++ - improve verbose
+	  mode
+
+2007-01-29  Mark Lindner  <markl@neuromancer>
+
+	* String.c++ - bugfix in replace(char, char)
+	* JavaVirtualMachine.c++ - bugfixes in parseSignature(), typo fixes
+	* ServerStreamPipe.h++ - documentation typo fix
+
+2007-01-25  Mark Lindner  <markl@neuromancer>
+
+	* Log.c++, Log.h++, LogFormat.c++, LogFormat.h++, Logger.c++,
+	  Logger.h++, ConsoleLogger.c++, ConsoleLogger.h++, FileLogger.c++,
+	  FileLogger.h++ - Refactoring of logging support
+	* Stream.c++, Stream.h++ - added read/write methods that take
+	  CharBuffer parameter
+	* Makefile.am - new files added
+	* LoadableModule.c++, LoadableModule.h++ - renamed from DynLinkObject.*
+	* System.c++, System.h++, Thread.c++, Thread.h++, PulseTimer.c++,
+	  CriticalSection.c++ - moved sleep() from System class to Thread class
+	* Runnable.h++ - documentation correction
+	* Buffer.h++, AbstractBuffer.h++ - removed getFree(); replaced with
+	  hasRemaining(); removed isFull() & isEmpty()
+	* configure.ac, Common.h++, Makefile.am, doxygen.cfg - bump version #s
+
+2006-12-11  Mark Lindner  <markl@neuromancer>
+
+	* Application.c++, Application.h++ - typo fixes
+
+2006-12-04    <markl@neuromancer>
+
+	* cbits/cbits.h - add #define for vsnprintf (for VS 2003.NET)
+	* Log.h++ - fix incorrect #defines of Log_debug
+	* Log.c++, SystemLog.c++ - #include cbits.h
+	* *-msvc7.10.vcproj, commonc++-msvc7.10.sln - new projects/solution for
+	  VS 2003.NET
+	* Date.c++ - remove export qualifier from int constants
+	* File.c++ - use correct stat structure (for VS 2003.NET)
+
+	----- version 0.2 ------
+
+2006-11-26  Mark Lindner  <markl@neuromancer>
+
+	* Stream.c++, Stream.h++ - add read/write that take raw buffers;
+	  bugfix (remove erroneous setLimit() call)
+
+2006-11-20  Mark Lindner  <markl@neuromancer>
+
+	* *.vcproj, commonc++props.vsprops - added property sheet and replaced
+	  all hardcoded 3rd-party lib paths with macros
+
+2006-11-19  Mark Lindner  <markl@neuromancer>
+
+	* StreamSocket.c++ - in vector I/O functions, throw
+	  ConnectionLostException if # of bytes transferred is 0; bugfix and
+	  code simplification in close()
+	* SocketAddress.h++ - setAddress() should take const ref arg
+	* ObjectPool.h++, ObjectPoolImpl.h++ - new/delete bugfix
+	* SocketMuxer.c++, SocketMuxer.h++ - partial rewrite & bugfixes
+	* *.vcproj - added projects for xml/db/jvm test harnesses
+
+2006-11-18  Mark Lindner  <markl@neuromancer>
+
+	* BasicBufferedStream.h++, BasicBufferedStream.h++ - bugfixes
+	* ac_jni_lib_dirs.m4 - find additional JNI libs
+	* SocketAddress.c++, SocketAddress.h++ - added copy constructor,
+	  assignment operator, and ==, != operators
+
+2006-11-11  Mark Lindner  <markl@neuromancer>
+
+	* RegExp.c++, RegExp.h++, URL.c++ - reverse order of args in
+	  RegExp::match()
+	* commonc++.jvm.pc.in, Makefile.am, commonc++jvm.vcproj, commonc++.sln
+	  - renamed jvm lib from commonc++j to commonc++jvm
+
+2006-11-04  Mark Lindner  <markl@neuromancer>
+
+	* CircularBuffer.c++, CircularBuffer.h++ - lots of bugfixes
+	* configure.ac, cpp_config.h.in, lib/Network.c++ - added tests for
+	  broken implementation of gethostbyaddr_r()
+	* TempFile.c++ - code cleanup
+
+2006-11-01  Mark Lindner  <markl@neuromancer>
+
+	* ProgressTracker.h++ - new classes
+
+2006-10-27  Mark Lindner  <markl@neuromancer>
+
+	* Makefile.am, tests/Makefile.am, configure.ac, pcre/Makefile.in,
+	  pcre/filelist.txt - build/dist fixes
+	* FileName.c++ - bugfix in Windows-specific code in setPathName()
+
+2006-10-26  Mark Lindner  <markl@neuromancer>
+
+	* Windows.c++, Windows.h++, File.c++, Semaphore.c++,
+	  ServerStreamPipe.c++, SharedMemoryBlock.c++ - add new WinPerms
+	  wrapper object to manage memory for SECURITY_DESCRIPTOR & associated
+	  data structures
+	* Semaphore.c++ - bugfix: release semaphore initially in constructor
+	  on Windows
+	* SharedMemoryBlock.c++, SharedMemoryBlock.h++ - bugfixes for Windows
+	* Process.c++ - bugfixes for Windows
+	* Stream.c++ - handle broken pipe errors on Windows (throw
+	  EOFException)
+	* ServerStreamPipe.c++, StreamPipe.c++, StreamPipe.h++ - bugfixes for
+	  closing stream pipes on Windows
+
+2006-10-22  Mark Lindner  <markl@neuromancer>
+
+	* Thread.c++ - bugfix in currentThread()
+
+2006-10-20  Mark Lindner  <markl@neuromancer>
+
+	* File.c++, File.h++, Windows.c++, Windows.h++, POSIX.c++, POSIX.h++,
+	  Dir.c++ - refactored/bugfixed Windows::removeTrailingSlashes() and
+	  POSIX::removeTrailingSlashes() as File::removeTrailingSeparators()
+	* SearchPath.c++ - strip trailing slashes from directories
+	* SocketUtil.c++ - bugfix: use SOCKET_errno, not errno
+	* RegExp.h++ - clip RegExpMatch indices to 0 if negative
+	* String.c++, String.h++ - return String::empty if substring() called
+	  with startIndex equal to endIndex
+
+2006-10-19  Mark Lindner  <markl@neuromancer>
+
+	* Thread.c++, Thread.h++, ThreadLocal.h++, ThreadLocalImpl.h++,
+	  Windows.c++, Windows.h++, DLLMain.c++ - rewrite of TLS management
+	  for Windows
+	* Process.c++ - replace strdup/free with new/delete
+	* System.c++ - fix typo in code that determines hostname on Windows
+
+2006-10-18  Mark Lindner  <markl@neuromancer>
+
+	* libatomic/atomic_win32_generic.c - fix typo
+	* pcre/* - replace prebuilt .a's with full pcre-6.7 source distro and
+	  integrate into MSVC++ solution
+
+2006-10-18  Mark Lindner  <markl@neuromancer>
+
+	* AllocationMap.c++, AllocationMap.h++ - added new class
+
+2006-10-03  Mark Lindner  <markl@neuromancer>
+
+	* File.c++, File.h++ - renamed followSymLink() to readSymLink()
+	* SocketAddress.c++, SocketAddress.h++ - bugfixes, cleanup
+
+2006-10-03  Mark Lindner  <mlindner@chimera>
+
+	* Array.h++ - added new class template
+	* String.c++, String.h++ - added split() and whitespaceChars constant
+	* POSIX.c++, POSIX.h++ - added removeTrailingSlashes()
+	* FileName.c++, FileName.h++ - improved setFileName() to handle paths
+	* File.c++, File.h++ - added resolveSymLink()
+	* System.c++ - follow /tmp if it is a symlink
+	* File.c++ - bugfixes in exists() and createDirectory(); added
+	  isValidSeparator()
+
+2006-10-02  Mark Lindner  <mlindner@chimera>
+
+	* <multiple> - added throw() specifications
+	* BitSet.c++, BitSet.h++ - added throw() specifications; fixed
+	  impl of getBlock().
+	* File.c++ - error handling added for POSIX code in copy()
+
+2006-10-02  Mark Lindner  <markl@neuromancer>
+
+	* AsyncQueue.h++, AsyncQueueImpl.h++ - removed class
+
+2006-09-27  Mark Lindner  <markl@neuromancer>
+
+	* DateTime.c++, DateTime.h++ - bugfix: fix order of args in
+	  constructor; add normalize() method
+	* MemoryBlock.c++, MemoryBlock.h++ - moved nontrivial methods into
+	  source file; bugfix in overlap calculation; remove cast operators
+	  which caused ambiguity
+	* Buffer.h++, BufferImpl.h++, CircularBufferImpl.h++, Stream.c++,
+	  HexCodec.c++, Base64Codec.c++, StreamSocket.c++, XDRCodec.c++ -
+	  rename Buffer::advancePosition() method to bump(); added skip(),
+	  get(), put() methods
+
+2006-09-26  Mark Lindner  <markl@neuromancer>
+
+	* Stream.c++ - initialize _handle in default constructor
+	* File.c++, File.h++ - added remove() method
+	* StreamPipe.c++, ServerStreamPipe.c++, StreamPipe.h++,
+	  ServerStreamPipe.h++ - I/O related bugfixes and improved error
+	  handling
+	* CRC32Checksum.c++, CRC32Checksum.h++ - removed class
+	* SemaphoreLocker.h++ - new class
+	* atomic_generic_x86.c - bugfix in return value of atomic_add()
+	* SharedMemoryBlock.c++ - throw exception if attach() called on already
+	  attached block
+
+2006-09-26  Mark Lindner  <mlindner@chimera>
+
+	* SocketAddress.c++, SocketAddress.h++ - added isNonroutable() and
+	  getNetworkClass()
+
+2006-09-25  Mark Lindner  <markl@neuromancer>
+
+	* Socket.c++, Socket.h++ - added get/setKeepAlive() methods
+	* Stream.c++, TempFile.c++, File.c++, DatagramSocket.c++,
+	  Stream.h++, Socket.h++, StreamSocket.h++, DatagramSocket.h++,
+	  StreamPipe.c++, SocketUtil.c++ - renamed Stream::init() to
+	  Stream::_init() to resolve name clash with Socket::init();
+	  throw SocketException, not SocketIOException for non-I/O related
+	  socket errors; minor fixes to nonblocking connect logic
+	* configure.ac - add test for funlockfile
+	* LogFormat.c++ - qualify stdio calls with std::; call flockfile/
+	  funlockfile (if available) to prevent interleaved log messages
+	* DeleteFunctor.h++ - fix compile errors
+
+2006-09-25  Mark Lindner  <mlindner@chimera>
+
+	* File.c++, File.h++ - added static getSize() method
+	* MemoryMappedFile.c++ - bugfix in close(); fixes to error handling,
+	  exception messages
+	* MemoryMappedFile.h++ - corrected documentation to open()
+	* JavaException.h++, IOException.h++ - made write() virtual
+	* Socket.h++ - exception rework
+	* ServerSocket.c++, Socket.c++, DatagramSocket.c++, StreamSocket.c++,
+	  DatagramSocket.h++ - add "isInitialized" checks; better error
+	  handling; bugfixes and refactoring for all sockets to correct lack
+	  of bind() calls
+	* ServerSocket.c++, ServerSocket.h++, Socket.c++, Socket.h++ - move
+	  set/getReuseAddress() from ServerSocket to Socket, and fix impl
+	  of init() to set the option between calls to socket() & bind()
+	* MulticastSocket.c++ - properly initialize superclass
+	* SocketAddress.c++, SocketAddress.h++ - added isMulticastAddress()
+	* MulticastSocket.c++, MulticastSocket.h++ - added additional forms
+	  of join() and accept(); added checks for valid mcast addr
+
+2006-09-22  mlindner  <markl@neuromancer>
+
+	* ObjectPoolImpl.h++ - bugfix & compile error fix (for OS X)
+	* *Impl.h++ - replace warning comment with inclusion guard
+	* TempFile.c++ - unconditionally delete tempfile in close();
+	  use System::getTempDir() rather than hardcoded path
+
+2006-09-22  Mark Lindner  <mlindner@chimera>
+
+	* ServerSocket.c++ - don't allow use of initialized socket in accept();
+	  removed REUSEADDR stuff from listen(); made socket blocking by
+	  default; throw TimeoutException in accept()
+	* Socket.h++ - made init() virtual
+	* Exception.h++, SystemException.h++, DataFormatException.h++,
+	  Database.h++, ObjectPool.h++, ParseException.h++,
+	  IOException.h++ - exception rework
+	* JavaVirtualMachine.c++, JavaVirtualMachine.h++, JavaException.h++ -
+	  moved java exceptions into their own header
+	* System.c++ - portability fix
+	* Network.c++ - minor cleanup
+	* Stream.c++ - setTimeout() shouldn't be a no-op
+	* StreamSocket.c++, StreamSocket.h++ - fix typo in read(); fix
+	  setTimeout() method
+
+2006-09-21  Mark Lindner  <markl@neuromancer>
+
+	* SharedMemorySegment.c++, SharedMemorySegment.h++ - bugfix in
+	  constructor; modified to extend MemoryBlock; renamed
+	  SharedMemoryBlock
+	* System.c++, System.h++ - roundToPageSize() takes size_t rather than
+	  uint64_t
+	* POSIX.c++ - fix to verifyIPCName()
+	* MemoryBlock.h++, CircularBufferImpl.h++, Stream.c++ - renamed
+	  MemoryBlock::get/setLength() to get/setSize(); made setLength() &
+	  setSize() virtual
+	* Process.c++, Process.h++ - add getMaxRSS() and fix calculation on
+	  Windows to be pages, not bytes
+	* FileTraverser.c++, FileTraverser.h++ - bugfix in handling of root
+	  file; added handleError() method.
+	* Stream.h++ - marked copy constructor & assignment operator private
+	* File.c++, Dir.c++ - detect "file not found" condition and throw
+	  PathNotFoundException.
+
+2006-09-21  Mark Lindner  <mlindner@chimera>
+
+	* Process.c++ - various bugfixes in I/O plumbing logic and arglist
+	  generation in start(); made env arg optional in constructor; added
+	  idempotence to start/stop methods; added isStarted() method
+	* BasicBufferedStreamImpl.h++ - fix null pointer dereference problems
+	* Socket.c++, Socket.h++, DatagramSocket.c++, DatagramSocket.h++,
+	  StreamSocket.c++, StreamSocket.h++ - overloaded connect() to accept
+	  a SocketAddress
+	* String.c++, String.h++, SearchPath.c++, SearchPath.h++,
+	  Process.h++, JavaVirtualMachine.c++, File.c++ - StringVec now a
+	  class rather than a typedef; use operator<< as alias for push_back
+
+2006-09-20  Mark Lindner  <mlindner@chimera>
+
+	* Time.c++, Time.h++, Date.c++, Date.h++ - change all components to
+	  uint_t from int; range checking bugfixes; invert bool param in
+	  setHour12()
+	* AtomicCounter.c++, AtomicCounter.h++ - added missing postfix
+	  increment & decrement operators; correct documentation for
+	  testAndSet()
+
+2006-09-19  Mark Lindner  <markl@neuromancer>
+
+	* BasicBufferedStream.h++ - added typedefs for byte & char streams
+	* PulseTimer.c++ - reworked run loop to fix timing bug
+	* DynLinkObject.c++, DynLinkObject.h++ - added fileNameForStem()
+	  methods
+	* String.h++, String.c++ - added String::empty constant
+
+2006-09-19  Mark Lindner  <mlindner@chimera>
+
+	* TimeSpan.c++, TimeSpan.h++ - added toSeconds(), replaced macros
+	  with static members, fix bug in copy constructor
+	* Version.c++, Version.h++ - added getVersion(), bugfixes to parsing
+	  & formatting, add support for C:R:A and C-A.A.R forms
+	* ReadWriteLocker.h++ - added ReadLocker & WriteLocker
+	* FilePtr.c++, FilePtr.h++ - change "String" params to "const String&"
+	* Common.h++, Integers.h++, TerminalAttr.h++ - add documentation for
+	  macros; shorted some macro names
+	* LogFormat.c++ - prevent NULL pointer dereference on application name
+	* LogFormat.h++ - fix doc typo
+	* Thread.h++ - add getName(), setName()
+	* File.c++, File.h++ - provide default argument to size in truncate()
+	* Stream.c++ - bugfix; seek() is valid on non-readable (write-only)
+	  file
+	* XDRCodec.c++ - fixes to encoding of strings (encode length),
+	  encoding/decoding of floats and doubles (use union), decoding of
+	  32-bit and 64-bit ints (missing bitwise or ops)
+
+2006-09-18  Mark Lindner  <markl@neuromancer>
+
+	* BTree.h++ - interface cleanup; added contains(), getCapacity(),
+	  renamed del() to remove(), added const qualifiers, etc.
+
+2006-09-18  Mark Lindner  <mlindner@chimera>
+
+	* EventHandler.h++ - pass E, not E *
+	* File.c++, File.h++ - add validSeparators
+	* BTree.h++, BTreeImpl.h++ - remove debug messages, replace dumpIter()
+	  with getKeys(), add ostream param to dump(), add getValues()
+	* String.c++ - reorder tests in compareTo(const char *, bool) to
+	  prevent dereferencing of NULL pointer (segfault)
+	* ReadWriteLock.c++ - fix typo; lockWrite() was locking for read
+	* BoundedQueue.h++ - made Mutex mutable (fix compile error); added
+	  missing initializer for _capacity
+	* RegExp.c++ - added isNull(), operator!(), and handle null patterns
+	* FileTraverser.c++, FileTraverser.h++ - added pruning capability
+
+2006-09-15  Mark Lindner  <mlindner@chimera>
+
+	* Mutex.c++, Mutex.h++ - add recursive flag to constructor; Linux
+	  does not support timed locks for recursive mutexes
+	* File.c++ - bugfixes: use lstat() in isSymLink(), not stat();
+	  NUL-terminate result from readlink() in followSymLink();
+	  added setCreationMask() function; added truncate() function
+
+2006-09-14  Mark Lindner  <mlindner@chimera>
+
+	* BoundedQueue.h++, BoundedQueueImpl.h++ - new class template
+	* Integers.h++ - cleanup, typo fix
+	* File.c++, File.h++ - added followSymLink() method
+	* Common.h++ - added a few useful macros
+
+2006-09-13  Mark Lindner  <markl@neuromancer>
+
+	* Thread.c++, Thread.h++, ThreadLocal.h++, ThreadLocalImpl.h++ -
+	  add support for "foreign" threads; fix TLS cleanup on Windows
+	* RefSetImpl.h++ - fix compile errors
+
+2006-09-12  Mark Lindner  <markl@neuromancer>
+
+	* DynLinkObject.c++, DynLinkObject.h++ - added getPrefix() and
+	  getExtension() methods.
+	* Runnable.h++, Thread.c++, Thread.h++ - added Runnable; made Thread
+	  a concrete class that can accept a Runnable
+	* HexCodec.c++, HexCodec.h++ - add lowercase flag to encode methods
+	* System.c++ - bugfix in currentTimeMillis(); added getTempDir()
+	* ThreadLocal.h++, ThreadLocalImpl.h++ - implement operator->()
+	* Common.h++ - add COMMONCPP_LENGTHOF() macro
+
+	----- version 0.1 ------

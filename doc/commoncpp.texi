@@ -1,0 +1,51 @@
+\input texinfo.tex    @c -*-texinfo-*-
+@c 
+@c %**start of header
+
+@c All text is ignored before the setfilename.
+@setfilename commoncpp.info
+@settitle commonc++ @value{edition}
+
+@set edition 0.1
+@set update-month December 2005
+@set update-date 31 @value{update-month}
+
+@comment %**end of header
+
+@tex
+\global\emergencystretch = .3\hsize
+@end tex
+
+@setchapternewpage odd
+
+@titlepage
+
+@title commonc++
+@subtitle A C++ Common Class Library
+@subtitle Version @value{edition}
+@subtitle @value{update-date}
+
+@author Mark A.@: Lindner
+
+@page
+@vskip 0pt plus 1filll
+Copyright @copyright{} 1994-2006  Mark A Lindner
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+@end titlepage
+
+@contents
+
+@ifnottex
+@node Top
+@comment  node-name,  next,  previous,  up
+@top cfl
+@end ifnottex

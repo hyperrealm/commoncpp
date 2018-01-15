@@ -1,0 +1,64 @@
+.TH plugintool 1 "@RELEASE_DATE@" "@PACKAGE_STRING@" "User Commands"
+.SH NAME
+plugintool \- commonc++ plugin inspector tool
+.SH SYNOPSIS
+plugintool [ --pname --pversion --pauthor --pdate --pclass --info ] \fIfile\fP ...
+
+plugintool --md5 \fIfile\fP ...
+
+plugintool --sha1 \fIfile\fP ...
+
+plugintool [ --help --version ]
+.SH DESCRIPTION
+The \fBplugintool\fP utility displays metadata for one or more
+commonc++ plugin files (shared libraries on POSIX systems or DLLs on
+Windows). This metadata is embedded in the plugin's object code as a
+series of C string constants when the plugin is compiled.
+
+The first form of the command displays any combination of the standard
+metadata elements that are embedded in each commonc++ plugin \fIfile\fP
+listed on the command line: the plugin name, the plugin version, the
+author/copyright information, the build date and time, and the plugin
+implementation class.
+
+The second and third forms of the command generate and display the
+MD5 or SHA-1 checksum for each commonc++ plugin \fIfile\fP listed on
+the command line.
+.SH OPTIONS
+.TP 15
+.B --help
+Display help synopsis and exit.
+.TP 15
+.B --version
+Display version information and exit.
+.TP 15
+.B --pname
+Display the plugin name.
+.TP 15
+.B --pversion
+Display the plugin version.
+.TP 15
+.B --pauthor
+Display the plugin author/copyright information.
+.TP 15
+.B --pdate
+Display the plugin build date and time.
+.TP 15
+.B --pclass
+Display the plugin implementation C++ class name.
+.TP 15
+.B --info
+Display all plugin information. This is the default when no other options are
+specified.
+.TP 15
+.B --md5
+Display the plugin's MD5 checksum.
+.TP 15
+.B --sha1
+Display the plugin's SHA1 checksum.
+.SH NOTES
+If any of the \fIfile\fP arguments does not refer to a valid commonc++ plugin file, a warning is displayed to that effect.
+.SH AUTHOR
+.PD 0
+.TP 5
+Mark Lindner <@PACKAGE_BUGREPORT@>

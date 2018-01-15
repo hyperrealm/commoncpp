@@ -1,0 +1,1 @@
+--host=arm-linux-androideabi --with-sysroot=/pkg/android-toolchain-19/sysroot/ --with-java=/pkg/jdk-1.7.0_51 --with-expat=/pkg/android/expat-2.1.0  --prefix=/pkg/android/commonc++-0.7

@@ -1,0 +1,14 @@
+
+commonc++ is a C++ class library for developing cross-platform systems
+software for POSIX (GNU/Linux, Mac OS X) and Windows (2000/XP)
+systems. It provides an intuitive, object-oriented
+abstraction/portability layer around common operating system
+facilities like threads, concurrency mechanisms, sockets, networking,
+shared memory and other IPC mechanisms, regular expressions, files,
+streams, logging, process execution, scheduling, and more. It also
+includes a collection of common abstractions like strings, buffers,
+object pools, a random number generator, timers, and so on. Three
+extension libraries also provide simple object persistence built on
+Berkeley DB, XML parsing/manipulation built on Expat, and a Java
+Native Interface (JNI) wrapper to ease the development of hybrid
+C++/Java programs.

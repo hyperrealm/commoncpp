@@ -1,0 +1,14 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: commonc++xml
+Description: Common C++ XML Class Library
+Version: @VERSION@
+URL: http://www.hyperrealm.com/main.php?s=commoncpp
+Requires:
+Conflicts:
+Libs: -L${libdir} -lcommonc++xml
+Libs.private: -lcommonc++ -lexpat @LIBS@ 
+Cflags: -I${includedir}

@@ -1,0 +1,45 @@
+
+- these constructors should not throw exceptions:
+JavaBuffer
+
+
+- internationalization of the following classes:
+DateTimeFormat
+
+Rename CharOps -> Char16Ops
+
+BUGS:
+
+alternative to mktime()
+
+julianDay = ((year * (365 * 4 + 1)) >> 2) + day_of_year
+	- ((1970 * (365 * 4 + 1)) / 4 + 1 - 13);
+
+long time = julianDay * (24 * 60 * 60 * 1000) + millis
+
+if(time >= gregorian cutover)
+{
+  int gregOffset = (year / 400) - (year / 100) + 2;
+  if(isLeapYear(year, true) && dayOfYear < 31 + 29)
+    ++gregOffset;
+
+  time += gregOffset * (24 * 60 * 60 * 1000);
+}
+
+isLeapYear(int year, bool gregorian)
+{
+  if((year & 3) ! = 0)
+    return(false);
+
+  if(! gregorian)
+    return(true);
+
+  return((year % 100) != 0 || (year % 400) == 0);
+}
+
+
+
+Android portability problems:
+
+Locale - use android_support library?
+Logging - need to write to android log

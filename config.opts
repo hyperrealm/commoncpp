@@ -1,0 +1,1 @@
+--with-expat=/pkg/expat-2.2.0 --with-cppunit=/pkg/cppunit-1.14.0 --with-binutils=/usr --prefix=/pkg/commonc++-0.7

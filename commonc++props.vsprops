@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<VisualStudioPropertySheet 
+	ProjectType="Visual C++" 
+	Version="8.00" 
+	Name="commonc++props"
+	>
+	<UserMacro Name="jdk.home" Value="C:\Program Files\Java\jdk1.6.0_21" /> 
+	<UserMacro Name="cppunit.home" Value="$(THIRD_PARTY)\cppunit-1.12.1" /> 
+	<UserMacro Name="expat.home" Value="$(THIRD_PARTY)\expat-2.0.1" /> 
+</VisualStudioPropertySheet>

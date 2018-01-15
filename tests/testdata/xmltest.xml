@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<test>
+  <attributes>
+    <attr name="booltest" value="true">     abcdef    </attr>
+    <attr name="inttest" value="12345678"></attr>
+    <attr name="doubletest" value="-3.141592654"/>
+    <foo/>
+    <attr name="longlongtest" value="1125899906842624">2^50</attr>
+    <attr name="stringtest" value="Hello, world!"></attr>
+  </attributes>
+
+  <deeply>
+    <nested>
+      <item>
+        Jello
+      </item>
+    </nested>
+  </deeply>
+</test>

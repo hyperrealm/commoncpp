@@ -1,0 +1,226 @@
+			      commonc++
+                              ---------
+
+This file describes how to build commonc++ on various platforms, and
+documents known issues and common problems.
+
+
+CONFIGURING
+===========
+
+commonc++jvm
+------------
+
+The `commonc++jvm' extension library must be linked against the Java
+runtime libraries. You can specify the location of your Java
+Development Kit (JDK) installation via the following option to
+configure:
+
+--with-java=JAVADIR
+
+If your JDK is installed in /pkg/jdk-1.5.0_04, for example, you would
+use:
+
+--with-java=/pkg/jdk-1.5.0_04
+
+If you do not specify --with-java, the commonc++jvm library will not
+be built.
+
+The JDK may be obtained at: http://java.sun.com/javase/downloads/
+Version 1.5.0 or later is required.
+
+On Mac OS X the JDK is installed as a framework. In this case, you
+would use something like this:
+
+--with-java=/System/Library/Frameworks/JavaVM.framework/Versions/1.5.0
+
+
+commonc++xml
+------------
+
+The 'commonc++xml' extension library must be linked against the
+expat XML parser library. You can specify the location of your
+expat installation via the following option to configure:
+
+--with-expat=EXPATDIR
+
+If you do not specify --with-expat, the commonc++xml library will not
+be built.
+
+Expat may be obtained at: http://sourceforge.net/projects/expat/
+Version 2.0.0 or later is required.
+
+
+symbolic stack trace support
+----------------------------
+
+The stack trace functionality can produce a more useful symbolic stack
+trace using the GNU BFD library, which is distributed as part of GNU
+binutils. You can enable this support via the following option to configure:
+
+--with-binutils=BINUTILSDIR
+
+If you do not specify --with-binutils, stack traces will be generated
+using facilities in glibc, which in general will be less informative.
+
+
+unit test harness
+-----------------
+
+The unit test harnesses depend on cppunit. You can specify the
+location of your cppunit installation via the following option to
+configure:
+
+--with-cppunit=CPPUNITDIR
+
+If you do not specify --with-cppunit, the test harnesses will not be
+built.
+
+Cppunit may be obtained at: http://sourceforge.net/projects/cppunit
+Version 1.12.0 or later is required.
+
+
+examples
+--------
+
+The 'config.opts' file ('config.osx.opts' for Mac OS X) contains
+example options to the configure script.
+
+
+
+BUILDING ON WINDOWS
+===================
+
+You may either use the guidelines above to build with gcc using the
+MinGW environment, or you can use the included solution file
+(commonc++.sln) to build with Visual C++ Express 2008 (or equivalent).
+Visual C++ Express 2010 is not currently supported.
+
+BUILDING WITH VISUAL C++
+------------------------
+
+For the Visual C++ Express 2005 option, supporting packages are expected
+to be in the following locations. If you prefer installing them in
+different locations (or want to install different versions), you will
+need to edit the custom macros in the commonc++props.vsprops property
+sheet accordingly.
+
+JDK 1.6.0_13 (Java) - Default install location, which is
+                      C:\Program Files\Java\jdk1.6.0_13
+                      (macro/env var: "jdk.home")
+
+Expat 2.0.0         - C:\Expat-2.0.0
+                      (macro/env var: "expat.home")
+
+cppunit 1.12.0      - C:\cppunit-1.12.0
+                      (macro/env var: "cppunit.home")
+
+An apparent bug in Visual Studio causes it to forget that the .c++
+files need to be compiled with the C++ compiler. These source files
+may spuriously revert back to "Custom Build Tool" in the project
+properties, and thus are not built, which leads to confusing linker
+errors later on. If you have trouble building commonc++ in Visual
+Studio and you suspect that this is the problem, then for each project
+in the solution explorer, select all of the source files (.c++ files)
+for that project, right click and select "Properties...", and then
+check that the "Tool" property under "Configuration Properties >
+General" is set to "C/C++ Compiler Tool".
+
+
+Building with Visual C++ requires that you (optionally) build
+expat. To aid with this, the following directory is included:
+
+expat.vc8	- Visual Studio solutions/projects for expat
+
+Simply overlay the contents of this directory over the extracted
+source tree of the corresponding package, and then build it using
+Visual Studio. You can obtain the source package at the following URLs:
+
+expat    - http://sourceforge.net/projects/expat/files/expat/expat-2.0.1.tar.gz
+
+
+BUILDING WITH MINGW
+-------------------
+
+To build with MinGW, install the MinGW and Msys packages from
+http://www.mingw.org/. Then, from within the Msys shell, build commonc++
+using the following commands:
+
+$ export lt_cv_deplibs_check_method=pass_all
+$ ./configure --prefix=<install dir>
+$ make
+$ make install
+
+
+PACKAGE LAYOUT
+==============
+
+cbits/           - A small C library of functions and macros that adds C
+                   library functions that are missing or named oddly on
+                   Windows.
+
+doc/             - The reference manual. (Not yet written.)
+
+lib/             - The commonc++ libraries and headers.
+
+libatomic/       - A small C library of atomic integer operations.
+
+libstacktrace/   - A small C++ library for generating symbolic stack traces.
+
+pcre-8.12/       - The PCRE regular expression library. This is the complete,
+                   original pcre-8.12 distribution, plus MSVC++ projects for
+                   building it as static Windows libraries.
+
+plugintool/      - The plugintool utility.
+
+sqlite-3.7.5/	 - The SQLite embedded database library. This is the complete,
+                   original sqlite-3.7.5 distribution, plus MSVC++ projects
+                   for building it as static Windows libraries.
+
+tests/           - Unit test harnesses, some of which are not finished.
+
+
+
+CONTRIBUTING
+============
+
+This project would greatly benefit from help in the following areas:
+
+1.  Writing/expanding unit tests. And testing, testing, testing. There are
+    sure to be bugs.
+
+2.  Finishing incomplete functionality. Most of these are denoted with a
+    "// TODO" comment in the source.
+
+3.  Internationalization (date/time formats).
+
+4.  IPv6 support.
+
+5.  SSL support.
+
+6.  zlib wrapper
+
+#5 and #6 may require some refactoring of the Stream class to remove its
+dependence on a FileHandle.
+
+
+
+REUSABLE UNIT TEST HARNESS
+==========================
+
+The static library libcommonc++testmain.a (commonc++testmain.lib on
+Windows) provides a reusable CppUnit test harness, including a main()
+function. You can use this library to create your own unit test
+executables. Simply use the CPPUNIT_TEST_SUITE_REGISTRATION macro in
+each unit test class to register the unit test with the global
+registry. Link all of your unit test classes with this library to
+produce a test harness executable. You can invoke this executable with
+the '--help' switch to see the available command line options.
+
+
+
+FEEDBACK
+========
+
+Contact the author by using the feedback form at http://hyperrealm.com/
+

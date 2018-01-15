@@ -1,0 +1,2 @@
+
+--with-java=/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/JavaVM.framework --with-expat=/pkg/expat-2.0.1 --with-cppunit=/pkg/cppunit-1.12.1 --prefix=/pkg/commonc++-0.6.6
